@@ -9,6 +9,7 @@ import {
   errorMiddleware,
   notFound,
 } from "./middlewares/errorMiddleware.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb", extended: true }));
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Routes
 app.use(router);
