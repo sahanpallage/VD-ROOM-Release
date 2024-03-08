@@ -1,27 +1,32 @@
-dotenv.config();
-import dotenv from "dotenv";
+import userModel from "../models/user.model.js";
+import asyncHandler from "express-async-handler";
 import JWT from "jsonwebtoken";
 
-const secret = process.env.JWT_SECRET_KEY;
-
-export default function validateToken(req, res, next) {
-  const authHeader = req.headers["authorization"]; // Middleware function to validate JWT tokens
-  if (!authHeader || !authHeader.startsWith("Bearer")) {
-    return res.status(401).send("A token is required for authentication");
+export const jwtValidation = asyncHandler(async (req, res, next) => {
+  let token;
+  if (req?.headers?.authorization?.startsWith("Bearer")) {
+    try {
+      token = req.headers.authorization.split(" ")[1];
+      const decoded = JWT.verify(token, process.env.JWT_SECRET_KEY);
+      const user = await userModel.findById(decoded?.id);
+      req.user = user;
+      next();
+    } catch (error) {
+      res.status(401);
+      throw new Error("Not authorized, token failed!");
+    }
+  } else {
+    res.status(401);
+    throw new Error("Not authorized, no token found!");
   }
+});
 
-  const token = authHeader.split(" ")[1]; // The authorization header is expected to be in the format "Bearer [token]"
-
-  if (!token) {
-    return res.status(401).send("A token is required for authentication");
+export const isAdmin = asyncHandler(async (req, res, next) => {
+  const { email } = req.user;
+  const adminUser = await userModel.findOne({ email });
+  if (adminUser.role !== "admin") {
+    throw new Error("You are not an admin!");
+  } else {
+    next();
   }
-
-  try {
-    const decoded = JWT.verify(token, secret); // Verify the token using the secret key and decode it
-    console.log("decoded : ", decoded);
-    req.user = decoded;
-  } catch (error) {
-    return res.status(400).send("Invalid Token");
-  }
-  return next();
-}
+});

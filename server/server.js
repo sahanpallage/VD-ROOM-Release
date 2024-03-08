@@ -2,9 +2,14 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import dbConnection from "./config/dbConnection";
-import router from "./routes";
-import errorMiddleware from "./middlewares/errorMiddleware";
+import dbConnection from "./config/dbConnection.js";
+import router from "./routes/index.js";
+import {
+  errorHandler,
+  errorMiddleware,
+  notFound,
+} from "./middlewares/errorMiddleware.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
@@ -20,12 +25,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb", extended: true }));
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Routes
 app.use(router);
 
 // Error handling middleware
-app.use(errorMiddleware);
+// app.use(errorMiddleware);
+app.use(errorHandler);
+app.use(notFound);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
