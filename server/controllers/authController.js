@@ -5,6 +5,7 @@ import { validateMongoDbId } from "../utils/validateMongoDbId.js";
 import generateRefreshToken from "../config/refreshToken.js";
 import JWT from "jsonwebtoken";
 
+// User registration
 export const registerController = asyncHandler(async (req, res) => {
   const { email } = req.body;
   const findUser = await userModel.findOne({ email });
@@ -21,6 +22,7 @@ export const registerController = asyncHandler(async (req, res) => {
   }
 });
 
+// User login
 export const loginController = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const findUser = await userModel.findOne({ email });
@@ -49,6 +51,7 @@ export const loginController = asyncHandler(async (req, res) => {
   }
 });
 
+// Handle refresh token
 export const handleRefreshToken = asyncHandler(async (req, res) => {
   const cookie = req.cookies;
   if (!cookie?.refreshToken) {
@@ -65,6 +68,29 @@ export const handleRefreshToken = asyncHandler(async (req, res) => {
       res.status(200).json({ accessToken });
     }
   });
+});
+
+// User logout
+export const logoutController = asyncHandler(async (req, res) => {
+  const cookie = req.cookies;
+  if (!cookie?.refreshToken) {
+    throw new Error("No refresh token found!");
+  }
+  const refreshToken = cookie.refreshToken;
+  const user = await userModel.findOne({ refreshToken });
+  if (!user) {
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: true,
+    });
+    res.sendStatus(204); //Forbidden
+  }
+  await userModel.findByIdAndUpdate(refreshToken, { refreshToken: "" });
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: true,
+  });
+  res.sendStatus(204); //Forbidden
 });
 
 // Update a user
@@ -125,6 +151,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
+// Admin can block a user
 export const blockedUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
@@ -147,6 +174,7 @@ export const blockedUser = asyncHandler(async (req, res) => {
   }
 });
 
+// Admin can unblock a user
 export const unblockedUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
