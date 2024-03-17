@@ -1,9 +1,9 @@
-import generateToken from "../config/jwtToken.js";
+import JWT from "jsonwebtoken";
 import userModel from "../models/user.model.js";
 import asyncHandler from "express-async-handler";
-import { validateMongoDbId } from "../utils/validateMongoDbId.js";
+import generateToken from "../config/jwtToken.js";
 import generateRefreshToken from "../config/refreshToken.js";
-import JWT from "jsonwebtoken";
+import { validateMongoDbId } from "../utils/validateMongoDbId.js";
 
 // User registration
 export const registerController = asyncHandler(async (req, res) => {
@@ -13,9 +13,9 @@ export const registerController = asyncHandler(async (req, res) => {
     const newUser = new userModel(req.body);
     try {
       await newUser.save();
-      res.status(201).json(newUser);
+      res.json(newUser);
     } catch (error) {
-      res.status(409).json({ message: error.message });
+      res.json({ message: error.message });
     }
   } else {
     throw new Error("User already exists!");
@@ -37,7 +37,7 @@ export const loginController = asyncHandler(async (req, res) => {
       httpOnly: true,
       maxAge: 72 * 60 * 60 * 1000,
     });
-    res.status(200).json({
+    res.json({
       _id: findUser?._id,
       firstname: findUser?.firstname,
       lastname: findUser?.lastname,
@@ -65,7 +65,7 @@ export const handleRefreshToken = asyncHandler(async (req, res) => {
       throw new Error("Invalid refresh token!");
     } else {
       const accessToken = generateToken(user.id);
-      res.status(200).json({ accessToken });
+      res.json({ accessToken });
     }
   });
 });
@@ -74,7 +74,7 @@ export const handleRefreshToken = asyncHandler(async (req, res) => {
 export const logoutController = asyncHandler(async (req, res) => {
   const cookie = req.cookies;
   if (!cookie?.refreshToken) {
-    throw new Error("No refresh token found!");
+    throw new Error("No refresh token found in cookies!");
   }
   const refreshToken = cookie.refreshToken;
   const user = await userModel.findOne({ refreshToken });
@@ -85,7 +85,10 @@ export const logoutController = asyncHandler(async (req, res) => {
     });
     res.sendStatus(204); //Forbidden
   }
-  await userModel.findByIdAndUpdate(refreshToken, { refreshToken: "" });
+  await userModel.findOneAndUpdate(
+    { refreshToken: refreshToken },
+    { refreshToken: "" }
+  );
   res.clearCookie("refreshToken", {
     httpOnly: true,
     secure: true,
@@ -109,7 +112,7 @@ export const updateUser = asyncHandler(async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).json(updateUser);
+    res.json(updateUser);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -119,7 +122,7 @@ export const updateUser = asyncHandler(async (req, res) => {
 export const getAllUser = asyncHandler(async (req, res) => {
   try {
     const getUsers = await userModel.find();
-    res.status(200).json(getUsers);
+    res.json(getUsers);
   } catch (error) {
     throw new Error("Error occured while fetching users!");
   }
@@ -132,7 +135,7 @@ export const getUser = asyncHandler(async (req, res) => {
   try {
     const getUser = await userModel.findById(id);
 
-    res.status(200).json(getUser);
+    res.json(getUser);
   } catch (error) {
     throw new Error("Error occured while fetching user!");
   }
@@ -145,7 +148,7 @@ export const deleteUser = asyncHandler(async (req, res) => {
   try {
     const deleteUser = await userModel.findByIdAndDelete(id);
     validateMongoDbId(req.params.id);
-    res.status(200).json(deleteUser);
+    res.json(deleteUser);
   } catch (error) {
     throw new Error("Error occured while fetching user!");
   }
@@ -166,9 +169,7 @@ export const blockedUser = asyncHandler(async (req, res) => {
         new: true,
       }
     );
-    res
-      .status(200)
-      .json({ blockedUser, message: "User blocked successfully!" });
+    res.json({ blockedUser, message: "User blocked successfully!" });
   } catch (error) {
     throw new Error("Error occured while blocking user!");
   }
@@ -188,9 +189,7 @@ export const unblockedUser = asyncHandler(async (req, res) => {
         new: true,
       }
     );
-    res
-      .status(200)
-      .json({ unblockedUser, message: "User unblocked successfully!" });
+    res.json({ unblockedUser, message: "User unblocked successfully!" });
   } catch (error) {
     throw new Error("Error occured while unblocking user!");
   }

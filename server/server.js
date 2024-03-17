@@ -1,15 +1,16 @@
+import cors from "cors";
+import morgan from "morgan";
+import dotenv from "dotenv";
 import express from "express";
 import bodyParser from "body-parser";
-import cors from "cors";
-import dotenv from "dotenv";
-import dbConnection from "./config/dbConnection.js";
 import router from "./routes/index.js";
+import cookieParser from "cookie-parser";
+import dbConnection from "./config/dbConnection.js";
 import {
   errorHandler,
   errorMiddleware,
   notFound,
 } from "./middlewares/errorMiddleware.js";
-import cookieParser from "cookie-parser";
 dotenv.config();
 
 const app = express();
@@ -21,6 +22,7 @@ dbConnection();
 
 // Middlewares
 app.use(cors());
+app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb", extended: true }));
