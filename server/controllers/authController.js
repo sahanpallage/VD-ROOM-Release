@@ -209,3 +209,5 @@ export const updatePassword = asyncHandler(async (req, res) => {
     res.json(user);
   }
 });
+
+export const forgotPasswordToken = asyncHandler(async (req, res) => {});
