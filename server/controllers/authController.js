@@ -194,3 +194,18 @@ export const unblockedUser = asyncHandler(async (req, res) => {
     throw new Error("Error occured while unblocking user!");
   }
 });
+
+export const updatePassword = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  const { password } = req.body;
+  validateMongoDbId(_id);
+  const user = await userModel.findById(_id);
+  if (password) {
+    user.password = password;
+    await user.createPasswordResetToken();
+    const updatedPassword = await user.save();
+    res.json(updatedPassword);
+  } else {
+    res.json(user);
+  }
+});
