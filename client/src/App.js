@@ -1,5 +1,6 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
   return (
@@ -23,3 +24,22 @@ function App() {
 }
 
 export default App;
+
+// // function App() {
+
+//   // return (
+//     <>
+//      Hello world!
+//      {/* all page routes comes here  like below */}
+
+//      {/* <BrowserRouter>
+//     <Routes>
+//     <Route index element={<Home />} />
+//     <Route path="/home" element={<Home />} />
+//     <Route path="/about" element={<About />} />
+//     </Routes>
+//     </BrowserRouter> */}
+
+//     </>
+//   )
+// }
