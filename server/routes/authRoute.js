@@ -11,12 +11,14 @@ import {
   unblockedUser,
   updatePassword,
   updateUser,
+  forgotPasswordToken,
 } from "../controllers/authController.js";
 import { isAdmin, jwtValidation } from "../middlewares/jwtValidation.js";
 
 const authRouter = express.Router();
 
 authRouter.post("/register", registerController);
+authRouter.post("/forgot-password", forgotPasswordToken);
 authRouter.put("/password", jwtValidation, updatePassword);
 authRouter.post("/login", loginController);
 authRouter.get("/all-users", getAllUser);
