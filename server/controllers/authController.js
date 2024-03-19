@@ -1,6 +1,8 @@
+import crypto from "crypto";
 import JWT from "jsonwebtoken";
 import userModel from "../models/user.model.js";
 import asyncHandler from "express-async-handler";
+import { sendEmail } from "./emailController.js";
 import generateToken from "../config/jwtToken.js";
 import generateRefreshToken from "../config/refreshToken.js";
 import { validateMongoDbId } from "../utils/validateMongoDbId.js";
@@ -210,4 +212,43 @@ export const updatePassword = asyncHandler(async (req, res) => {
   }
 });
 
-export const forgotPasswordToken = asyncHandler(async (req, res) => {});
+export const forgotPasswordToken = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  const user = await userModel.findOne({ email });
+  if (!user) {
+    throw new Error("User not found!");
+  }
+  try {
+    const token = await user.createPasswordResetToken();
+    await user.save();
+    const resetURL = `Hi, Please follow this link to reset your password. This link is valid till 10 minutes from now: <a href='http://localhost:8080/vd-room/auth/reset-password/${token}'>Click Here</a>`;
+    const data = {
+      to: email,
+      subject: "Password Reset Link",
+      text: "Hey User, Please follow this link to reset your password. This link is valid till 10 minutes from now.",
+      htm: resetURL,
+    };
+    sendEmail(data);
+    res.json(token);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+export const resetPassword = asyncHandler(async (req, res) => {
+  const { password } = req.body;
+  const { token } = req.params;
+  const hashedToken = crypto.createHash("sha256").update(token).digest("hex");
+  const user = await userModel.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+  if (!user) {
+    throw new Error("Token is expired. Please try again later!");
+  }
+  user.password = password;
+  user.passwordResetToken = undefined;
+  user.passwordResetExpires = undefined;
+  await user.save();
+  res.json(user);
+});
