@@ -1,28 +1,32 @@
-<<<<<<< HEAD
-=======
-import logo from "./logo.svg";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
->>>>>>> 39c516caca491700344d7c7b1a28ce90dbaa8241
+//import "./App.css";
+import UserPost from "./pages/UserPost";
+import Card from "./components/SocialFeed/Card";
+import PostCard from "./components/SocialFeed/PostCard";
 
-import React from 'react';
-import { ReactDOM } from 'react';
-import Card from './components/SocialFeed/Card';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
-const App = () => {
+function App() {
   return (
-   /* <Router>
-      <Routes>
-        <Route path="/" element={<FeedPage />} />
-        
-      </Routes>
-    </Router>
-    */
-   <> <Card /></>
+    <div className="App">
+      
+        <PostCard />
+     
+   <BrowserRouter> 
+    <Routes>
+    {/* <Route index element={<Home />} />
+    <Route path="/home" element={<Home />} />
+    <Route path="/about" element={<About />} /> */}
+    <Route path="/post/create" element={<UserPost />} />
+    
+    </Routes>
+    </BrowserRouter> 
+    </div>
+  
+
   );
-};
+}
 
 export default App;
 
