@@ -32,6 +32,10 @@ app.use(cookieParser());
 // Routes
 app.use(router);
 
+// post route
+import post from "./routes/post.js";
+app.use("/post", post);
+
 // Error handling middleware
 // app.use(errorMiddleware);
 app.use(errorHandler);
@@ -39,4 +43,9 @@ app.use(notFound);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-});
+
+
+  
+ 
+  });
+
