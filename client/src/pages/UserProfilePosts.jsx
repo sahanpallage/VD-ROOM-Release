@@ -117,7 +117,7 @@ const UserProfilePosts = () => {
                     <Button className="floating-button2 custom-button-color" >Add New Photo</Button >
                 </div>
                 {posts.map(({ _id, imageUrl, likes, title }) => (
-                    <Card border='dark' style={{ width: '18rem' }} key={_id}>
+                    <Card border='dark' style={{ width: '18rem' }} key={_id} className="my-card">
                         <Card.Img variant="top" src={imageUrl} className="post-image" />
                         <Card.Body>
                             <Card.Text className="post-title">

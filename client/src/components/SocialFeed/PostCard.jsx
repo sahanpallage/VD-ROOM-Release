@@ -71,8 +71,8 @@ const PostCard = () => {
 
 
                 {posts.map(({ _id, imageUrl, likes, title }) => (
-                    <Card style={{ width: '18rem' }} key={_id}>
-                        <Card.Img variant="top" src={imageUrl} className="post-image" />
+                    <Card className="my-card" style={{ width: '18rem' }} key={_id}>
+                        <Card.Img variant="top" src={imageUrl} className="post-image " />
                         <Card.Body>
                             <Card.Text className="post-title">
                                 <h1>{title}</h1>

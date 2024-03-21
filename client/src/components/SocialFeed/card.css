@@ -86,7 +86,7 @@
 
 .floating-button {
   position: fixed;
-  top: 85%;
+  top: 88%;
   left: 45%;
 
   width: 150px;
@@ -105,4 +105,9 @@
 
 .custom-button-color {
   background-color: rgb(65, 65, 65);
+}
+
+.my-card:hover {
+  transform: scale(1.05); /* Increase the size of the card */
+  transition: transform 0.2s; /* Animation */
 }
