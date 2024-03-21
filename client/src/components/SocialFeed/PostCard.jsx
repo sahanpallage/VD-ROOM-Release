@@ -35,6 +35,7 @@ import axios from "axios";
 import "./card.css"; // Import your custom CSS file
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import UserPost from "../../pages/UserPost";
 
 const PostCard = () => {
     const [posts, setPosts] = useState([]);
@@ -51,6 +52,16 @@ const PostCard = () => {
 
         fetchPosts();
     }, []);
+
+    const handleLike = async (postId) => {
+        try {
+            const response = await axios.put(`http://localhost:8800/post/like/${postId}`);
+            const updatedPost = response.data.product;
+            setPosts(posts.map(post => post._id === postId ? updatedPost : post));
+        } catch (error) {
+            console.error("Error liking post:", error);
+        }
+    };
 
     return (
         <div>
@@ -73,14 +84,15 @@ const PostCard = () => {
                             <Button variant="primary">View Details</Button>
                         </Link> */}
                             <div>
-                                <Button variant="primary">Like</Button>
+                                <Button variant="primary" onClick={() => handleLike(_id)}>Like</Button>
                             </div>
                         </Card.Body>
                     </Card>
 
                 ))}
                 <div>
-                    <Button variant="primary" className="floating-button">Your Profile</Button>
+                    <Button variant="primary" className="floating-button" //</div>onClick={() => { UserPost(); }}
+                    >Your Profile</Button>
                 </div>
 
             </div>

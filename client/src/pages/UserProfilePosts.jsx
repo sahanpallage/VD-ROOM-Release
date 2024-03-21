@@ -89,7 +89,7 @@ const UserProfilePosts = () => {
 
     const handleDelete = async (postId) => {
         try {
-            await axios.delete(`http://localhost:8800/post/${postId}`);
+            await axios.delete(`http://localhost:8800/post/delete/${postId}`);
             setPosts(posts.filter(post => post._id !== postId));
         } catch (error) {
             console.error("Error deleting post:", error);
@@ -117,7 +117,7 @@ const UserProfilePosts = () => {
                     <Button className="floating-button2 custom-button-color" >Add New Photo</Button >
                 </div>
                 {posts.map(({ _id, imageUrl, likes, title }) => (
-                    <Card style={{ width: '18rem' }} key={_id}>
+                    <Card border='dark' style={{ width: '18rem' }} key={_id}>
                         <Card.Img variant="top" src={imageUrl} className="post-image" />
                         <Card.Body>
                             <Card.Text className="post-title">

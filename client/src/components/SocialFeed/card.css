@@ -1,64 +1,63 @@
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.mainContainer{
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    background: rgba(242, 242, 242, 255);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px ;
-    align-items: center;
-    padding: 0 10rem;
+.mainContainer {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background: rgba(242, 242, 242, 255);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  align-items: center;
+  padding: 0 10rem;
+}
+.card {
+  filter: drop-shadow(4px 8px 7px #454545);
+}
+.mainContainer .box {
+  background: #fff;
+  text-align: center;
+  transition: 0.3s ease-in-out;
 }
 
-.mainContainer .box{
-    background: #fff;
-    text-align: center;
-    transition: .3s ease-in-out;
-
+.mainContainer .cardContainer {
+  background: #fff;
+  text-align: center;
+  transition: 0.3s ease-in-out;
 }
 
-.mainContainer .cardContainer{
-    background: #fff;
-    text-align: center;
-    transition: .3s ease-in-out;
-
+.mainContainer .box:hover {
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 0px 10px 0px;
+  transform: scale(1.1);
 }
 
-.mainContainer .box:hover{
-    box-shadow: rgba(17, 12, 46, 0.15) 0px 0px 10px 0px;
-    transform: scale(1.1);
+.mainContainer .card {
+  padding: 15px 15px 0;
 }
 
-.mainContainer .card{
-    padding: 15px 15px 0;
+.card .image {
+  background: #f9f9f9;
+  width: 80%;
+  margin: 10px auto 25px;
+  position: relative;
 }
 
-.card .image{
-    background: #f9f9f9;
-    width: 80%;
-    margin: 10px auto 25px;
-    position: relative;
+.card .image img {
+  width: 100%;
+  transition: 0.3s ease-in-out;
 }
 
-.card .image img{
-    width: 100%;
-    transition: .3s ease-in-out;
-}
-
-.btn{
-    background-color: #3700ff; 
+.btn {
+  background-color: #3700ff;
   border: none;
   color: white;
   padding: 12px 20px;
   margin-top: 15px;
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -66,51 +65,44 @@
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    padding: 100px;
-    flex: auto;
-  }
-
- /* card.css */
-.post-image {
-    width: 100%; /* Set width to fill the entire card */
-    height: 200px; /* Set a fixed height */
-    object-fit: cover; /* Ensure the image covers the entire area while maintaining aspect ratio */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  padding: 100px;
+  flex: auto;
 }
 
-
+/* card.css */
+.post-image {
+  width: 100%; /* Set width to fill the entire card */
+  height: 200px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image covers the entire area while maintaining aspect ratio */
+}
 
 .page-header {
-    text-align: center;
-    padding-top: 20px;
+  text-align: center;
+  padding-top: 20px;
 }
 
 .floating-button {
-    position: fixed;
-    top: 85%;
-    left: 45%;
-    
-    
-    /* Add Bootstrap class for small button */
-    /* If you're not using Bootstrap, you can set the width and height manually */
-    width: 150px;
-    height: 50px;
+  position: fixed;
+  top: 85%;
+  left: 45%;
+
+  width: 150px;
+  height: 50px;
 }
 
 .floating-button2 {
-    position: absolute;
-    top: 40%;
-    left:10%;
-    
-    
-    /* Add Bootstrap class for small button */
-    /* If you're not using Bootstrap, you can set the width and height manually */
-    width: 100px;
-    height: 100px;
+  position: absolute;
+  top: 40%;
+  left: 10%;
+
+  filter: drop-shadow(4px 8px 7px #454545);
+  width: 100px;
+  height: 100px;
 }
 
 .custom-button-color {
-    background-color: rgb(65, 65, 65);
+  background-color: rgb(65, 65, 65);
 }
