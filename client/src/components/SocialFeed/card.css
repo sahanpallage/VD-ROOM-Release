@@ -71,3 +71,17 @@
     gap: 40px;
     padding: 100px;
   }
+
+ /* card.css */
+.post-image {
+    width: 100%; /* Set width to fill the entire card */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensure the image covers the entire area while maintaining aspect ratio */
+}
+
+.post-title {
+    height: 60px; /* Limit the height of the title container */
+    overflow: hidden; /* Hide any overflow content */
+    text-overflow: ellipsis; /* Display an ellipsis (...) for overflowed text */
+    white-space: nowrap; /* Prevent wrapping of the text */
+}

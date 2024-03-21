@@ -1,50 +1,53 @@
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-//import "./App.css";
-import UserPost from "./pages/UserPost";
-import Card from "./components/SocialFeed/Card";
-import PostCard from "./components/SocialFeed/PostCard";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// //import "./App.css";
+// import UserPost from "./pages/UserPost";
+// import Card from "./components/SocialFeed/Card";
+// import PostCard from "./components/SocialFeed/PostCard";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
+// function App() {
+//   return (
+//     <div className="App">
       
-        <PostCard />
+//         <PostCard />
+//         {/* <UserPost /> */}
      
-   <BrowserRouter> 
-    <Routes>
-    {/* <Route index element={<Home />} />
-    <Route path="/home" element={<Home />} />
-    <Route path="/about" element={<About />} /> */}
-    <Route path="/post/create" element={<UserPost />} />
+//    <BrowserRouter> 
+//     <Routes>
+//     {/* <Route index element={<Home />} />
+//     <Route path="/home" element={<Home />} />
+//     <Route path="/about" element={<About />} /> */}
+//     <Route path="/post/create" element={<UserPost />} />
     
-    </Routes>
-    </BrowserRouter> 
-    </div>
+//     </Routes>
+//     </BrowserRouter> 
+//     </div>
   
 
-  );
-}
+//   );
+// }
+
+// export default App;
+
+// App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PostCard from "./components/SocialFeed/PostCard";
+import PostDetail from "./components/SocialFeed/PostDetail";
+import UserPost from "./pages/UserPost";
+
+const App = () => {
+    return (
+      <Router>
+      <Routes>
+          <Route path="/" element={<PostCard />} />
+          <Route path="/posts/:id" element={<PostDetail />} />
+          <Route path="/post/create" element={<UserPost />} />
+      </Routes>
+  </Router>
+    );
+};
 
 export default App;
-
-// // function App() {
-
-//   // return (
-//     <>
-//      Hello world!
-//      {/* all page routes comes here  like below */}
-
-//      {/* <BrowserRouter>
-//     <Routes>
-//     <Route index element={<Home />} />
-//     <Route path="/home" element={<Home />} />
-//     <Route path="/about" element={<About />} />
-//     </Routes>
-//     </BrowserRouter> */}
-
-//     </>
-//   )
-// }
