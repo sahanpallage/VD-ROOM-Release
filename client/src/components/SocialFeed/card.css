@@ -70,6 +70,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     padding: 100px;
+    flex: auto;
   }
 
  /* card.css */
@@ -79,9 +80,37 @@
     object-fit: cover; /* Ensure the image covers the entire area while maintaining aspect ratio */
 }
 
-.post-title {
-    height: 60px; /* Limit the height of the title container */
-    overflow: hidden; /* Hide any overflow content */
-    text-overflow: ellipsis; /* Display an ellipsis (...) for overflowed text */
-    white-space: nowrap; /* Prevent wrapping of the text */
+
+
+.page-header {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.floating-button {
+    position: fixed;
+    top: 85%;
+    left: 45%;
+    
+    
+    /* Add Bootstrap class for small button */
+    /* If you're not using Bootstrap, you can set the width and height manually */
+    width: 150px;
+    height: 50px;
+}
+
+.floating-button2 {
+    position: absolute;
+    top: 40%;
+    left:10%;
+    
+    
+    /* Add Bootstrap class for small button */
+    /* If you're not using Bootstrap, you can set the width and height manually */
+    width: 100px;
+    height: 100px;
+}
+
+.custom-button-color {
+    background-color: rgb(65, 65, 65);
 }

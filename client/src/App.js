@@ -37,6 +37,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PostCard from "./components/SocialFeed/PostCard";
 import PostDetail from "./components/SocialFeed/PostDetail";
 import UserPost from "./pages/UserPost";
+import UserProfilePosts from "./pages/UserProfilePosts";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
     return (
@@ -45,6 +47,7 @@ const App = () => {
           <Route path="/" element={<PostCard />} />
           <Route path="/posts/:id" element={<PostDetail />} />
           <Route path="/post/create" element={<UserPost />} />
+             <Route path="/post/userposts" element={<UserProfilePosts />} />
       </Routes>
   </Router>
     );
