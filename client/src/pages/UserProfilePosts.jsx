@@ -82,11 +82,14 @@ import "../components/SocialFeed/card.css";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 
 const UserProfilePosts = () => {
     const [posts, setPosts] = useState([]);
 
+    const navigate = useNavigate();
+    
     const handleDelete = async (postId) => {
         try {
             await axios.delete(`http://localhost:8800/post/delete/${postId}`);
@@ -114,7 +117,7 @@ const UserProfilePosts = () => {
             <h1 className="page-header">User Feed</h1>
             <div className="grid-container">
                 <div>
-                    <Button className="floating-button2 custom-button-color" >Add New Photo</Button >
+                <Button className="floating-button2 custom-button-color" onClick={() => navigate('/post/create')}>Add New Photo</Button>
                 </div>
                 {posts.map(({ _id, imageUrl, likes, title }) => (
                     <Card border='dark' style={{ width: '18rem' }} key={_id} className="my-card">

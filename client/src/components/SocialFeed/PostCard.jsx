@@ -36,9 +36,12 @@ import "./card.css"; // Import your custom CSS file
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import UserPost from "../../pages/UserPost";
+import { useNavigate } from 'react-router-dom';
 
 const PostCard = () => {
     const [posts, setPosts] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -91,8 +94,7 @@ const PostCard = () => {
 
                 ))}
                 <div>
-                    <Button variant="primary" className="floating-button" //</div>onClick={() => { UserPost(); }}
-                    >Your Profile</Button>
+                    <Button variant="primary" className="floating-button" onClick={() => navigate('/post/userposts')}>Your Profile</Button>
                 </div>
 
             </div>
