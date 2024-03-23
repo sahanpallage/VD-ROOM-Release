@@ -37,6 +37,7 @@ import PostDetail from "./components/SocialFeed/PostDetail";
 import UserPost from "./pages/UserPost";
 import UserProfilePosts from "./pages/UserProfilePosts";
 import "bootstrap/dist/css/bootstrap.min.css";
+import LoginForm from "./pages/Login";
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/posts/:id" element={<PostDetail />} />
         <Route path="/post/create" element={<UserPost />} />
         <Route path="/post/userposts" element={<UserProfilePosts />} />
+        <Route path="/login" element={<LoginForm />} />
       </Routes>
     </Router>
   );
