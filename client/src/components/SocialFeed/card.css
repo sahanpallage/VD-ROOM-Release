@@ -31,7 +31,7 @@
 }
 
 .mainContainer .box:hover {
-  box-shadow: rgba(17, 12, 46, 0.15) 0px 0px 10px 0px;
+  box-shadow: rgba(97, 94, 112, 0.15) 0px 0px 10px 0px;
   transform: scale(1.1);
 }
 
