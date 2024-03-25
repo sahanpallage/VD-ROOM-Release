@@ -39,6 +39,7 @@ import UserProfilePosts from "./pages/UserProfilePosts";
 import "bootstrap/dist/css/bootstrap.min.css";
 import LoginForm from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import DressingRoom from "./pages/DressingRoom";
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/post/userposts" element={<UserProfilePosts />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/droom" element={<DressingRoom />} />
       </Routes>
     </Router>
   );
