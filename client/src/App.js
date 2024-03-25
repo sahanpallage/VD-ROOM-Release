@@ -40,11 +40,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LoginForm from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
+
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<PostCard />} />
+        <Route path="/register" element={<SignUp />} />
         <Route path="/posts/:id" element={<PostDetail />} />
         <Route path="/post/create" element={<UserPost />} />
         <Route path="/post/userposts" element={<UserProfilePosts />} />

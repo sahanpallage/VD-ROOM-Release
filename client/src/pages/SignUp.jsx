@@ -1,5 +1,5 @@
-import React from 'react';
 
+import React, { useState } from 'react';
 
 import {
   MDBBtn,
@@ -10,14 +10,17 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBInput,
-  MDBIcon,
-  MDBCheckbox
+  MDBIcon
+  
 }
 from 'mdb-react-ui-kit';
 
 function SignUp() {
+
+
   return (
-    <div><h1>sssssssssssssssss*</h1>
+    <div>
+      <div> <h1 > User Register</h1> </div>
     <MDBContainer fluid>
 
       <MDBCard className='text-black m-5' style={{borderRadius: '25px'}}>
@@ -29,12 +32,22 @@ function SignUp() {
 
               <div className="d-flex flex-row align-items-center mb-4 ">
                 <MDBIcon fas icon="user me-3" size='lg'/>
-                <MDBInput label='Your Name' id='form1' type='text' className='w-100'/>
+                <MDBInput label='First Name' id='form1' type='text' className='w-100'/>
+              </div>
+
+              <div className="d-flex flex-row align-items-center mb-4 ">
+                <MDBIcon fas icon="user me-3" size='lg'/>
+                <MDBInput label='Last Name' id='' type='text' className='w-100'/>
+              </div>
+
+              <div className="d-flex flex-row align-items-center mb-4 ">
+                <MDBIcon fas icon="phone me-3" size='lg'/>
+                <MDBInput label='Phone Number' id='' type='number' className='w-100'/>
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
                 <MDBIcon fas icon="envelope me-3" size='lg'/>
-                <MDBInput label='Your Email' id='form2' type='email'/>
+                <MDBInput label='Your Email' id='' type='email'/>
               </div>
 
               <div className="d-flex flex-row align-items-center mb-4">
@@ -47,9 +60,7 @@ function SignUp() {
                 <MDBInput label='Repeat your password' id='form4' type='password'/>
               </div>
 
-              <div className='mb-4'>
-                <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Subscribe to our newsletter' />
-              </div>
+              
 
               <MDBBtn className='mb-4' size='lg'>Register</MDBBtn>
 
@@ -69,3 +80,4 @@ function SignUp() {
 }
 
 export default SignUp;
+
