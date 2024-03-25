@@ -29,7 +29,10 @@ export const getBlog = asyncHandler(async (req, res) => {
   const { id } = req.params;
   validateMongoDbId(id);
   try {
-    const getBlog = await blogModel.findById(id);
+    const getBlog = await blogModel
+      .findById(id)
+      .populate("likes")
+      .populate("dislikes");
     const updateViews = await blogModel.findByIdAndUpdate(
       id,
       {
@@ -39,7 +42,7 @@ export const getBlog = asyncHandler(async (req, res) => {
         new: true,
       }
     );
-    res.json(updateViews);
+    res.json(getBlog);
   } catch (error) {
     throw new Error(error);
   }
@@ -127,20 +130,23 @@ export const disLikeBlog = asyncHandler(async (req, res) => {
   const { blogId } = req.body;
   validateMongoDbId(blogId);
 
-  // Find the blog which you want to be liked
+  // Find the blog which you want to be disliked
   const blog = await blogModel.findById(blogId);
 
-  // Find the user who wants to like the blog
+  // Find the user who wants to dislike the blog
   const loginUserId = req?.user?._id;
 
-  // Check if the user has already liked the blog
-  const isDisLiked = blog?.isDisliked;
   // Check if the user has already disliked the blog
-  const alreadyLiked = blog?.likes?.find(
+  const alreadyDisliked = blog?.dislikes?.find(
     (userId) => userId?.toString() === loginUserId?.toString()
   );
 
-  if (alreadyLiked) {
+  // Check if the user has already liked the blog
+  const isLiked = blog?.likes?.find(
+    (userId) => userId?.toString() === loginUserId?.toString()
+  );
+
+  if (isLiked) {
     const blog = await blogModel.findByIdAndUpdate(
       blogId,
       {
@@ -153,12 +159,12 @@ export const disLikeBlog = asyncHandler(async (req, res) => {
     );
     res.json(blog);
   }
-  if (isDisLiked) {
+  if (alreadyDisliked) {
     const blog = await blogModel.findByIdAndUpdate(
       blogId,
       {
         $pull: { dislikes: loginUserId },
-        isDisLiked: false,
+        isDisliked: false,
       },
       {
         new: true,
@@ -170,7 +176,7 @@ export const disLikeBlog = asyncHandler(async (req, res) => {
       blogId,
       {
         $push: { dislikes: loginUserId },
-        isDisLiked: true,
+        isDisliked: true,
       },
       {
         new: true,
