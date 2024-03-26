@@ -36,12 +36,13 @@ const productSchema = new mongoose.Schema(
       default: 0,
       select: true,
     },
-    images: {
-      type: Array,
-    },
+    images: [],
+    color: [],
+    tags: [],
     ratings: [
       {
         star: Number,
+        comment: String,
         postedBy: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
