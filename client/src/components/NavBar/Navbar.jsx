@@ -20,7 +20,7 @@ function NavBar() {
             <Nav.Link as={Link} to="/">
               cart
             </Nav.Link>
-            <Nav.Link as={Link} to="/socailfeed">
+            <Nav.Link as={Link} to="/socialfeed">
               Social Feed
             </Nav.Link>
           </Nav>

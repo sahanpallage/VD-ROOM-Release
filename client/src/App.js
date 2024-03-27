@@ -41,19 +41,17 @@ import LoginForm from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NavBar from "./components/NavBar/Navbar";
 
-
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/socailfeed" element={<PostCard />} />
+        <Route path="/socialfeed" element={<PostCard />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/posts/:id" element={<PostDetail />} />
         <Route path="/post/create" element={<UserPost />} />
         <Route path="/post/userposts" element={<UserProfilePosts />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/navbar" element={<NavBar />} />
       </Routes>
     </Router>
   );
