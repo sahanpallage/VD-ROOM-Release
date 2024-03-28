@@ -81,12 +81,12 @@ const MainLayout = () => {
                   label: "Product List",
                 },
                 {
-                  key: "category-b",
+                  key: "brand",
                   icon: <SiBrandfolder className="fs-4" />,
                   label: "Brand",
                 },
                 {
-                  key: "list-category-b",
+                  key: "list-brand",
                   icon: <LiaListUlSolid className="fs-4" />,
                   label: "Brand List",
                 },
@@ -106,7 +106,7 @@ const MainLayout = () => {
                   label: "Color",
                 },
                 {
-                  key: "color-l",
+                  key: "color-list",
                   icon: <AiOutlineBgColors className="fs-4" />,
                   label: "Color List",
                 },
