@@ -1,3 +1,12 @@
+:root {
+  --color-212529: #212529;
+  --color-ffd333: #ffd333;
+  --color-47ad24: #47ad24;
+  --color-e52e2e: #e52e2e;
+  --color-828599: #828599;
+  --color-3d464d: #3d464d;
+  --color-c3d4da: #c3d4da;
+}
 .ant-layout {
   min-height: 100vh;
 }
@@ -24,7 +33,11 @@
 }
 main {
   overflow-y: scroll;
+  height: 85vh;
   background-color: transparent !important;
+}
+main::-webkit-scrollbar {
+  width: 0px;
 }
 .logo {
   background-color: #3e2330;
@@ -45,4 +58,46 @@ main {
 .ant-layout-header div .badge {
   top: 12px;
   right: -14px;
+}
+h6.green-text {
+  color: var(--color-47ad24);
+  font-size: 14px;
+  font-family: Roboto !important;
+}
+h6.red-text {
+  color: var(--color-e52e2e);
+  font-size: 14px;
+  font-family: Roboto !important;
+}
+.green-text {
+  color: var(--color-47ad24);
+}
+.red-text {
+  color: var(--color-e52e2e);
+}
+.quill {
+  background-color: white;
+}
+.form-control {
+  box-shadow: none;
+  border-color: var(--color-c3d4da);
+}
+.title {
+  font-size: 28px;
+  font-family: Roboto !important;
+  color: var(--color-212529);
+}
+.sub-title {
+  font-size: 24px;
+  font-family: Roboto !important;
+  color: var(--color-212529);
+}
+.desc {
+  font-size: 14px;
+  font-family: Roboto !important;
+  color: var(--color-828599);
+}
+.error {
+  color: red;
+  font-size: 12px;
 }

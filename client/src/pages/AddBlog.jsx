@@ -5,7 +5,6 @@ import "react-quill/dist/quill.snow.css";
 import "../index.css";
 import { Stepper } from "react-form-stepper";
 import { InboxOutlined } from "@ant-design/icons";
-import { UploadProps } from "antd";
 import { message, Upload } from "antd";
 
 const { Dragger } = Upload;
@@ -36,7 +35,7 @@ const AddBlog = () => {
   };
   return (
     <div>
-      <h3 className="mb-4">Add Blog</h3>
+      <h3 className="mb-4 title">Add Blog</h3>
       <Stepper
         steps={[
           { label: "Add Blog Details" },

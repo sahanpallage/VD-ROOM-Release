@@ -1,38 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Table } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getBrands } from "../features/brand/brandSlice";
+import Link from "antd/es/typography/Link";
+import { TbEdit } from "react-icons/tb";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const columns = [
   {
-    title: "SNo",
+    title: "BNo",
     dataIndex: "key",
   },
   {
     title: "Name",
-    dataIndex: "name",
+    dataIndex: "title",
+    sorter: (a, b) => a.title.length - b.title.length,
   },
   {
-    title: "Product",
-    dataIndex: "product",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
+    title: "Actions",
+    dataIndex: "action",
   },
 ];
-const data1 = [];
-for (let i = 0; i < 46; i++) {
-  data1.push({
-    key: i,
-    name: `Edward King ${i}`,
-    product: 32,
-    status: `London, Park Lane no. ${i}`,
-  });
-}
 
 const BrandList = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getBrands());
+  }, []);
+  const brandState = useSelector((state) => state.brand.brands);
+  const data1 = [];
+  for (let i = 0; i < brandState.length; i++) {
+    data1.push({
+      key: i + 1,
+      title: brandState[i].title,
+      action: (
+        <>
+          <Link className=" fs-5 text-warning" to="">
+            <TbEdit />
+          </Link>
+          <Link className="ms-2 fs-5 text-danger" to="">
+            <RiDeleteBin5Line />
+          </Link>
+        </>
+      ),
+    });
+  }
   return (
     <div>
-      <h3 className="mb-4">Brands</h3>
+      <h3 className="mb-4 title">Brands</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
