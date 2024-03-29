@@ -4,7 +4,7 @@ import { TbEdit } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../features/product/productSlice";
-import Link from "antd/es/typography/Link";
+import { Link } from "react-router-dom";
 import "../index.css";
 
 const columns = [

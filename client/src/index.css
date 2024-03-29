@@ -101,3 +101,6 @@ h6.red-text {
   color: red;
   font-size: 12px;
 }
+.brand-error {
+  margin-top: -10px;
+}
