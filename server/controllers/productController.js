@@ -2,11 +2,6 @@ import slugify from "slugify";
 import asyncHandler from "express-async-handler";
 import productModel from "../models/product.model.js";
 import userModel from "../models/user.model.js";
-import fs from "fs";
-import {
-  cloudinaryDeleteImg,
-  cloudinaryUploadImg,
-} from "../utils/cloudinary.js";
 
 // create a product
 export const createProduct = asyncHandler(async (req, res) => {
@@ -190,37 +185,6 @@ export const rating = asyncHandler(async (req, res) => {
       { new: true }
     );
     res.json(finalProduct);
-  } catch (error) {
-    throw new Error(error);
-  }
-});
-
-export const uploadImages = asyncHandler(async (req, res) => {
-  try {
-    const uploader = (path) => cloudinaryUploadImg(path, "images");
-    const urls = [];
-    const files = req.files;
-    for (const file of files) {
-      const { path } = file;
-      const newPath = await uploader(path);
-      console.log(newPath);
-      urls.push(newPath);
-      fs.unlinkSync(path);
-    }
-    const images = urls.map((file) => {
-      return file;
-    });
-    res.json(images);
-  } catch (error) {
-    throw new Error(error);
-  }
-});
-
-export const deleteImages = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  try {
-    const deleted = cloudinaryDeleteImg(id, "images");
-    res.json({ message: "Image deleted successfully" });
   } catch (error) {
     throw new Error(error);
   }

@@ -8,6 +8,8 @@ import brandRouter from "./brandRoute.js";
 import couponRouter from "./couponRoute.js";
 import colorRouter from "./colorRoute.js";
 import enquiryRouter from "./enqRoute.js";
+import paymentRouter from "./paymentRoute.js";
+import uploadRouter from "./uploadRoute.js";
 
 const router = express.Router();
 
@@ -23,5 +25,7 @@ router.use(`${path}brand`, brandRouter); // /vd-room/brand/
 router.use(`${path}coupon`, couponRouter); // /vd-room/coupon/
 router.use(`${path}color`, colorRouter); // /vd-room/color/
 router.use(`${path}enquiry`, enquiryRouter); // /vd-room/enquiry/
+router.use(`${path}payment`, paymentRouter); // /vd-room/payment/
+router.use(`${path}upload`, uploadRouter); // /vd-room/upload/
 
 export default router;

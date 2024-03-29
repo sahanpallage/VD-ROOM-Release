@@ -23,6 +23,7 @@ import {
   createOrder,
   getOrders,
   updateOrderStatus,
+  getAllOrders,
 } from "../controllers/authController.js";
 import { isAdmin, jwtValidation } from "../middlewares/jwtValidation.js";
 
@@ -45,6 +46,7 @@ authRouter.get("/user/:id", jwtValidation, isAdmin, getUser);
 authRouter.get("/wishlist", jwtValidation, getWishList);
 authRouter.get("/get-cart", jwtValidation, getUserCart);
 authRouter.get("/get-orders", jwtValidation, getOrders);
+authRouter.get("/get-allOrders", jwtValidation, isAdmin, getAllOrders);
 
 // DELETE routes
 authRouter.delete("/delete/:id", deleteUser);

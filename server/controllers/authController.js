@@ -467,8 +467,21 @@ export const getOrders = asyncHandler(async (req, res) => {
   try {
     const userOrders = await OrderModel.findOne({ orderBy: _id })
       .populate("products.product")
+      .populate("orderBy")
       .exec();
     res.json(userOrders);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+export const getAllOrders = asyncHandler(async (req, res) => {
+  try {
+    const allUserOrders = await OrderModel.find()
+      .populate("products.product")
+      .populate("orderBy")
+      .exec();
+    res.json(allUserOrders);
   } catch (error) {
     throw new Error(error);
   }
