@@ -64,12 +64,12 @@ function App() {
             <Route path="product-list" element={<ProductList />} />
             <Route path="product" element={<AddProduct />} />
             <Route path="/" element={<PostCard />} />
-        <Route path="/posts/:id" element={<PostDetail />} />
-        <Route path="/post/create" element={<UserPost />} />
-        <Route path="/post/userposts" element={<UserProfilePosts />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/droom" element={<DressingRoom />} />
+            <Route path="/posts/:id" element={<PostDetail />} />
+            <Route path="/post/create" element={<UserPost />} />
+            <Route path="/post/userposts" element={<UserProfilePosts />} />
+            {/* <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignUp />} /> */}
+            <Route path="/droom" element={<DressingRoom />} />
           </Route>
         </Routes>
       </BrowserRouter>
