@@ -51,7 +51,7 @@ const App = () => {
         <Route path="/post/userposts" element={<UserProfilePosts />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/droom" element={<DressingRoom />} />
+        <Route path="/droom/:item" element={<DressingRoom />} />
       </Routes>
     </Router>
   );
