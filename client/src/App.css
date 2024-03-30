@@ -335,3 +335,12 @@ footer .input-group-text {
 }
 
 /* Special Product Ends Here */
+
+/* auth card */
+.auth-card {
+  padding: 20px;
+  background-color: white;
+  width: 500px;
+  margin: 30px auto;
+}
+/* auth card ends here */

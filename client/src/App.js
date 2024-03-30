@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MainLayout from "./components/MainLayout";
 import Login from "./pages/Login";
+import LoginCustomer from "./pages/customer/Login";
 import ResetPassword from "./pages/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword";
 import Dashboard from "./pages/Dashboard";
@@ -24,6 +25,7 @@ import AddColor from "./pages/AddColor";
 import AddCategory from "./pages/AddCategory";
 import AddProduct from "./pages/AddProduct";
 import AddBrand from "./pages/AddBrand";
+import OurStore from "./pages/OurStore";
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="store" element={<OurStore />} />
+            <Route path="cus-login" element={<LoginCustomer />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/reset-password" element={<ResetPassword />} />

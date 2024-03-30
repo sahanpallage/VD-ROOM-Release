@@ -65,7 +65,10 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link className="d-flex align-items-center gap-10 text-white">
+                  <Link
+                    to="/cus-login"
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
                     <img src="images/user.svg" alt="user" />
                     <p className="mb-0 custom-text-nav">
                       Login <br /> My Account
@@ -138,7 +141,7 @@ const Navbar = () => {
                 <div className="menu-links">
                   <div className="d-flex align-items-center gap-15">
                     <NavLink to="/">Home</NavLink>
-                    <NavLink to="/">Our Store</NavLink>
+                    <NavLink to="/store">Our Store</NavLink>
                     <NavLink to="/">Blogs</NavLink>
                     <NavLink to="/contact">Contact</NavLink>
                   </div>
