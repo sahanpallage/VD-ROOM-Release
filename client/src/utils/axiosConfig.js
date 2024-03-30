@@ -7,6 +7,5 @@ export const config = {
     Authorization: `Bearer ${getTokenFromLocalStorage.token}`,
     Accept: "application/json",
   },
-  responseType: "json",
-  timeout: 5000, // specifies the number of milliseconds before the request times out
+  // specifies the number of milliseconds before the request times out
 };
