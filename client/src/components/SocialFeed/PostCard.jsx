@@ -37,6 +37,7 @@ import Card from "react-bootstrap/Card";
 import UserPost from "../../pages/UserPost";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/Navbar";
+import img from "../SocialFeed/like.svg"
 
 const PostCard = () => {
   const [posts, setPosts] = useState([]);
@@ -88,12 +89,15 @@ const PostCard = () => {
           <Card className="my-card" style={{ width: "18rem" }} key={_id}>
             <Card.Img variant="top" src={imageUrl} className="post-image " />
             <Card.Body>
-              <Card.Text className="post-title">
-                <h1>{title}</h1>
-              </Card.Text>
-              <Card.Text>
-                <h1>{likes}</h1>
-              </Card.Text>
+              <div className="post-description">
+                <Card.Text className="post-title">
+                  <p>{title}</p>
+                </Card.Text>
+                <Card.Text className="card-likes">
+                  <p>{likes}</p>
+                  <img src={img} alt="like" className="like-img" />
+                </Card.Text>
+              </div>
               {/* <Link to={`/posts/${_id}`}>
                             <Button variant="primary">View Details</Button>
                         </Link> */}

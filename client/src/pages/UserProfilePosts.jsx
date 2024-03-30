@@ -80,6 +80,8 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/Navbar";
+// import img from "./components/SocialFeed/like.svg"
+
 
 const UserProfilePosts = () => {
   const [posts, setPosts] = useState([]);
@@ -187,10 +189,12 @@ const UserProfilePosts = () => {
             <Card.Img variant="top" src={imageUrl} className="post-image" />
             <Card.Body>
               <Card.Text className="post-title">
-                <h1>{title}</h1>
+                <p>{title}</p>
               </Card.Text>
-              <Card.Text>
-                <h1>{likes}</h1>
+              <Card.Text className="card-likes">
+                <p>{likes}</p>
+                {/* <img src={img} alt="like" className="like-img" /> */}
+
               </Card.Text>
               <Button variant="danger" onClick={() => handleDelete(_id)}>
                 Delete

@@ -40,6 +40,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import LoginForm from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NavBar from "./components/NavBar/Navbar";
+import UserProfile from "./components/UserProfile/UserProfile";
 
 const App = () => {
   return (
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/post/userposts" element={<UserProfilePosts />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/user" element={<UserProfile />} />
       </Routes>
     </Router>
   );
