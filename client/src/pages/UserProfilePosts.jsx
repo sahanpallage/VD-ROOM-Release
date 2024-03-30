@@ -82,7 +82,6 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../components/NavBar/Navbar";
 // import img from "./components/SocialFeed/like.svg"
 
-
 const UserProfilePosts = () => {
   const [posts, setPosts] = useState([]);
   const [showUserPostModal, setShowUserPostModal] = useState(false); //new
@@ -165,7 +164,10 @@ const UserProfilePosts = () => {
     //     ))}
     //   </div>
     // </div>
+
     <div>
+      <NavBar />
+
       {/* Add New Photo Button */}
       <div style={{ marginBottom: "20px" }}>
         {/* <Button
@@ -194,7 +196,6 @@ const UserProfilePosts = () => {
               <Card.Text className="card-likes">
                 <p>{likes}</p>
                 {/* <img src={img} alt="like" className="like-img" /> */}
-
               </Card.Text>
               <Button variant="danger" onClick={() => handleDelete(_id)}>
                 Delete

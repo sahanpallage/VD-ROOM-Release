@@ -3,7 +3,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+
 import { FaShoppingCart } from "react-icons/fa";
+//import { BsSearch } from "react-icons/bs";
 
 function NavBar() {
   return (
@@ -25,13 +27,14 @@ function NavBar() {
             </Nav.Link>
           </Nav>
 
-          <Button variant="outline-primary" className="ml-auto">
-            User Account
-          </Button>
+          <Link to="/user">
+            <Button variant="outline-primary" className="ml-auto">
+              User Account
+            </Button>
+          </Link>
         </Container>
       </Navbar>
     </>
   );
 }
-
 export default NavBar;
