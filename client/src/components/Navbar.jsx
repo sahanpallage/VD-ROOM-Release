@@ -1,6 +1,12 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
+import compare2 from "../images/compare2.svg";
+import wishlist from "../images/wishlist.svg";
+import user from "../images/user.svg";
+import social from "../images/social.svg";
+import cart from "../images/cart.svg";
+import menu from "../images/menu.svg";
 
 const Navbar = () => {
   return (
@@ -50,7 +56,7 @@ const Navbar = () => {
               <div className="nav-upper-links d-flex align-items-center justify-content-between">
                 <div>
                   <Link className="d-flex align-items-center gap-10 text-white">
-                    <img src="images/compare-2.svg" alt="compare" />
+                    <img src={compare2} alt="compare" />
                     <p className="mb-0 custom-text-nav">
                       Compare <br /> Clothes
                     </p>
@@ -58,7 +64,7 @@ const Navbar = () => {
                 </div>
                 <div>
                   <Link className="d-flex align-items-center gap-10 text-white">
-                    <img src="images/wishlist.svg" alt="wishlist" />
+                    <img src={wishlist} alt="wishlist" />
                     <p className="mb-0 custom-text-nav">
                       Favorite <br /> Wishlist
                     </p>
@@ -69,7 +75,7 @@ const Navbar = () => {
                     to="/cus-login"
                     className="d-flex align-items-center gap-10 text-white"
                   >
-                    <img src="images/user.svg" alt="user" />
+                    <img src={user} alt="user" />
                     <p className="mb-0 custom-text-nav">
                       Login <br /> My Account
                     </p>
@@ -77,15 +83,18 @@ const Navbar = () => {
                 </div>
                 <div>
                   <Link className="d-flex align-items-center gap-10 text-white">
-                    <img src="images/social.svg" alt="social" />
+                    <img src={social} alt="social" />
                     <p className="mb-0 custom-text-nav">
                       Social <br /> Feed
                     </p>
                   </Link>
                 </div>
                 <div>
-                  <Link className="d-flex align-items-center gap-10 text-white">
-                    <img src="images/cart.svg" alt="" />
+                  <Link
+                    to="/cart"
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
+                    <img src={cart} alt="" />
                     <div className="d-flex flex-column gap-10">
                       <span className="badge bg-white text-dark">0</span>
                       <p className="mb-0 custom-text-nav">LKR 3000</p>
@@ -111,7 +120,7 @@ const Navbar = () => {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <img className="" src="images/menu.svg" alt="menu" />
+                      <img className="" src={menu} alt="menu" />
                       <span className="me-5 d-inline-block">
                         Shop Categories
                       </span>
@@ -141,7 +150,7 @@ const Navbar = () => {
                 <div className="menu-links">
                   <div className="d-flex align-items-center gap-15">
                     <NavLink to="/">Home</NavLink>
-                    <NavLink to="/store">Our Store</NavLink>
+                    <NavLink to="/product">Our Store</NavLink>
                     <NavLink to="/">Blogs</NavLink>
                     <NavLink to="/contact">Contact</NavLink>
                   </div>

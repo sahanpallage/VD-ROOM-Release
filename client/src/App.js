@@ -26,6 +26,12 @@ import AddCategory from "./pages/AddCategory";
 import AddProduct from "./pages/AddProduct";
 import AddBrand from "./pages/AddBrand";
 import OurStore from "./pages/OurStore";
+import ForgotPasswordCustomer from "./pages/customer/ForgotPassword";
+import SignUp from "./pages/customer/SignUp";
+import ResetPasswordCustomer from "./pages/customer/ResetPassword";
+import SingleProduct from "./pages/customer/SingleProduct";
+import Cart from "./pages/customer/Cart";
+import Checkout from "./pages/customer/Checkout";
 
 function App() {
   return (
@@ -37,7 +43,13 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="store" element={<OurStore />} />
+            <Route path="product/:id" element={<SingleProduct />} />
             <Route path="cus-login" element={<LoginCustomer />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="cus-signup" element={<SignUp />} />
+            <Route path="cus-forgetPass" element={<ForgotPasswordCustomer />} />
+            <Route path="cus-resetPass" element={<ResetPasswordCustomer />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/reset-password" element={<ResetPassword />} />

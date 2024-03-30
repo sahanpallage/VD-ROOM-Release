@@ -4,94 +4,93 @@ import Marquee from "react-fast-marquee";
 import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
+import Container from "../components/Container";
 
 const Home = () => {
   return (
     <>
-      <section className="home-wrapper-1 py-5">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-6">
-              <div className="main-banner position-relative ">
+      <Container class1="home-wrapper-1 py-5">
+        <div className="row">
+          <div className="col-6">
+            <div className="main-banner position-relative ">
+              <img
+                src="images/main-banner-2.png"
+                className="img-fluid rounded-3"
+                alt="main"
+              />
+              <div className="main-banner-content position-absolute">
+                <h4>RICH GIRL VIBES</h4>
+                <h5>
+                  You manifested that rich girl energy & now these <br />
+                  ultra-luxe styles are here to make it a reality
+                </h5>
+                <p>From LKR 10000 or LKR 3000/mo.</p>
+                <Link className="button">BUY NOW</Link>
+              </div>
+            </div>
+          </div>
+          <div className="col-6">
+            <div className="d-flex flex-wrap gap-10 justify-content-between align-items-center">
+              <div className="small-banner position-relative">
                 <img
-                  src="images/main-banner-2.png"
+                  src="images/women-style-3.jpg"
                   className="img-fluid rounded-3"
                   alt="main"
                 />
-                <div className="main-banner-content position-absolute">
-                  <h4>RICH GIRL VIBES</h4>
-                  <h5>
-                    You manifested that rich girl energy & now these <br />
-                    ultra-luxe styles are here to make it a reality
-                  </h5>
-                  <p>From LKR 10000 or LKR 3000/mo.</p>
-                  <Link className="button">BUY NOW</Link>
+                <div className="small-banner-content position-absolute">
+                  <h4>NEW ARRIVAL</h4>
+                  <h5>The Perfect Dress For Partying</h5>
+                  <p>
+                    From LKR 10000 <br /> or LKR 3000/mo.
+                  </p>
                 </div>
               </div>
-            </div>
-            <div className="col-6">
-              <div className="d-flex flex-wrap gap-10 justify-content-between align-items-center">
-                <div className="small-banner position-relative">
-                  <img
-                    src="images/women-style-3.jpg"
-                    className="img-fluid rounded-3"
-                    alt="main"
-                  />
-                  <div className="small-banner-content position-absolute">
-                    <h4>NEW ARRIVAL</h4>
-                    <h5>The Perfect Dress For Partying</h5>
-                    <p>
-                      From LKR 10000 <br /> or LKR 3000/mo.
-                    </p>
-                  </div>
+              <div className="small-banner position-relative">
+                <img
+                  src="images/women-style-2.jpg"
+                  className="img-fluid rounded-3"
+                  alt="main"
+                />
+                <div className="small-banner-content position-absolute">
+                  <h4>BEST SELLER</h4>
+                  <h5>Vanilla Crop Top Here</h5>
+                  <p>
+                    From LKR 10000 <br /> or LKR 3000/mo.
+                  </p>
                 </div>
-                <div className="small-banner position-relative">
-                  <img
-                    src="images/women-style-2.jpg"
-                    className="img-fluid rounded-3"
-                    alt="main"
-                  />
-                  <div className="small-banner-content position-absolute">
-                    <h4>BEST SELLER</h4>
-                    <h5>Vanilla Crop Top Here</h5>
-                    <p>
-                      From LKR 10000 <br /> or LKR 3000/mo.
-                    </p>
-                  </div>
+              </div>
+              <div className="small-banner position-relative">
+                <img
+                  src="images/women-style-1.jpg"
+                  className="img-fluid rounded-3"
+                  alt="main"
+                />
+                <div className="small-banner-content position-absolute">
+                  <h4>BEST SELLER</h4>
+                  <h5>Vanilla Crop Top Here</h5>
+                  <p>
+                    From LKR 10000 <br /> or LKR 3000/mo.
+                  </p>
                 </div>
-                <div className="small-banner position-relative">
-                  <img
-                    src="images/women-style-1.jpg"
-                    className="img-fluid rounded-3"
-                    alt="main"
-                  />
-                  <div className="small-banner-content position-absolute">
-                    <h4>BEST SELLER</h4>
-                    <h5>Vanilla Crop Top Here</h5>
-                    <p>
-                      From LKR 10000 <br /> or LKR 3000/mo.
-                    </p>
-                  </div>
-                </div>
-                <div className="small-banner position-relative">
-                  <img
-                    src="images/women-style-4.jpg"
-                    className="img-fluid rounded-3"
-                    alt="main"
-                  />
-                  <div className="small-banner-content position-absolute">
-                    <h4>BEST SELLER</h4>
-                    <h5>Vanilla Crop Top Here</h5>
-                    <p>
-                      From LKR 10000 <br /> or LKR 3000/mo.
-                    </p>
-                  </div>
+              </div>
+              <div className="small-banner position-relative">
+                <img
+                  src="images/women-style-4.jpg"
+                  className="img-fluid rounded-3"
+                  alt="main"
+                />
+                <div className="small-banner-content position-absolute">
+                  <h4>BEST SELLER</h4>
+                  <h5>Vanilla Crop Top Here</h5>
+                  <p>
+                    From LKR 10000 <br /> or LKR 3000/mo.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </Container>
       <section className="home-wrapper-2 py-5">
         <div className="container-xxl">
           <div className="col-12">
@@ -139,6 +138,7 @@ const Home = () => {
         <div className="container-xxl">
           <div className="row">
             <div className="col-12">
+              <h3 className="section-heading">Our Popular Products</h3>
               <div className="categories d-flex justify-content-between flex-wrap align-items-center">
                 <div className="d-flex gap-30 align-items-center">
                   <div>

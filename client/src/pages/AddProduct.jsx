@@ -17,7 +17,7 @@ import CustomInput from "../components/CustomInput";
 
 let Schema = Yup.object({
   title: Yup.string().required("Title is required"),
-  description: Yup.string().required("Description is required"),
+  description: Yup.string().required("Description is required").min(5).max(15),
   price: Yup.number().required("Price is required"),
   brand: Yup.string().required("Brand is required"),
   category: Yup.string().required("Category is required"),
@@ -25,7 +25,7 @@ let Schema = Yup.object({
   color: Yup.array()
     .min(1, "Pick at least one color")
     .required("Color is required"),
-  quantity: Yup.number().required("Quantity is required"),
+  quantity: Yup.number().min(1).max(10).required("Quantity is required"),
 });
 
 const AddProduct = () => {
