@@ -12,7 +12,6 @@ const Overlay = ({setEnvironment, setColor, product}) => {
     <>
     <div>html overlay</div>
     <div>
-
       <button onClick={()=>{setEnvironment("sunset")}}>sunset</button>
       <button onClick={()=>{setEnvironment("city")}}>city</button>
       <button onClick={()=>{setEnvironment("night")}}>night</button>
@@ -72,10 +71,6 @@ const Shirt2 = (clothColor) => {
   gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.r = clothColor.clothColor.r / 255;
   gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.g = clothColor.clothColor.g / 255;
   gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.b = clothColor.clothColor.b / 255;
-  // gltf.materials["Material__35"].color.r = clothColor.clothColor.r;
-  // gltf.materials["Material__35"].color.g = clothColor.clothColor.g;
-  // gltf.materials["Material__35"].color.b = clothColor.clothColor.b;
-    // console.log(gltf.materials["Material.001"])
 }, [clothColor]);
   return (
     <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[-3,0,0]}/>
@@ -126,50 +121,6 @@ export default function DressingRoom() {
   const [product, setProduct] = useState()
   const {item} = useParams();
 
-  // // Sample data
-  // const shirt1 = {
-  //   product: "shirt1",
-  //   colors: [
-  //     {name:"red", isColor:true, r:132, g:165, b:80},
-  //     {name:"green", isColor:true, r:156, g:123, b:178},
-  //     {name:"blue", isColor:true, r:78, g:145, b:210},
-  //   ]
-  // }
-
-  // const shirt2 = {
-  //   product: "shirt2",
-  //   colors: [
-  //     {name:"red", isColor:true, r:132, g:165, b:80},
-  //     {name:"green", isColor:true, r:156, g:123, b:178},
-  //     {name:"blue", isColor:true, r:78, g:145, b:210},
-  //   ]
-  // }
-
-  // const jeans = {
-  //   product: "jeans",
-  //   colors: [
-  //     {name:"red", isColor:true, r:132, g:165, b:80},
-  //     {name:"green", isColor:true, r:156, g:123, b:178},
-  //     {name:"blue", isColor:true, r:78, g:145, b:210},
-  //   ]
-  // }
-
-  // switch(item){
-  //   case 'shirt1':
-  //     setProduct(shirt1)
-  //   case 'shirt2':
-  //     setProduct(shirt2)
-  //   case 'jeans':
-  //     setProduct(jeans)
-  // }
-
-  
-  // const getProduct = (item) => {
-  //   const reuslt = axios.get(`https://localhost:3000/products/getProducts/${item}`).then((response) => setProduct(response))
-  // }
-  // getProduct()
-
-
   useEffect(() => {
     // Sample data
     const shirt1 = {
@@ -219,12 +170,12 @@ export default function DressingRoom() {
   }, []);
 
   const [environmentPreset, setEnvironment] = useState("warehouse");
-  const [clothColor, setColor] = useState({r:1, g:1, b:1})
+  const [clothColor, setColor] = useState({ r: 255, g: 255, b: 255 })
 
   return (
     <div className="droom" style={{ width:'100vw',height:'100vh'}}>
         <Overlay setEnvironment={setEnvironment} setColor={setColor} product={product} />
-         {/* <Experience environmentPreset={environmentPreset} clothColor={clothColor} product={product} /> */}
+         <Experience environmentPreset={environmentPreset} clothColor={clothColor} product={product} />
     </div>
   )
 }
