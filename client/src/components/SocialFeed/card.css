@@ -77,7 +77,7 @@
 .post-image {
   width: 100%; /* Set width to fill the entire card */
   height: 200px; /* Set a fixed height */
-  object-fit: cover; /* Ensure the image covers the entire area while maintaining aspect ratio */
+  object-fit: scale-down;
 }
 
 .post-title {
@@ -111,11 +111,16 @@
 .floating-button2 {
   position: relative;
   top: 30%;
-  left: 10%;
+  left: 20%;
 
   filter: drop-shadow(4px 8px 7px #c9c9c9);
   width: 100px;
   height: 100px;
+}
+
+.floating-button2:hover {
+  transform: scale(1.05); /* Increase the size of the card */
+  transition: transform 0.2s; /* Animation */
 }
 
 .custom-button-color {
