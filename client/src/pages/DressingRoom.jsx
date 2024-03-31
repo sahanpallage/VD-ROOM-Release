@@ -116,25 +116,50 @@ const Models = ({ product, clothColor }) => {
 };
 
 const Experience = ({ environmentPreset, clothColor, product }) => {
+  const spotlightRef = useRef();
+
+  useEffect(() => {
+    // Activate spotlight only if environmentPreset is "night"
+    const timeoutId = setTimeout(() => {
+      if (environmentPreset === "night") {
+        if (spotlightRef.current) {
+          spotlightRef.current.visible = true;
+          spotlightRef.current.intensity = 5;
+        }
+      } else {
+        if (spotlightRef.current) {
+          spotlightRef.current.visible = false;
+        }
+      }
+    }, 0);
+  
+    return () => clearTimeout(timeoutId);
+  }, [environmentPreset]);
 
   return (
     <>
       <Canvas shadows camera={{ fov: 65 }}>
         <PresentationControls speed={1.5} global zoom={0.5} polar={[-0.1, Math.PI / 4]}>
           <Environment preset={environmentPreset} background={true} blur={0.5} />
-          {/* <ambientLight intensity={1} /> */}
+          <ambientLight intensity={1} />
           <Model />
           <Models product={product} clothColor={clothColor} />
           <SpotLight
-            distance={5}
-            angle={0.55}
-            attenuation={5}
-            anglePower={5} // Diffuse-cone anglePower (default: 5)
-            position={[-4,2,2]}
-          />
-          {/* <Shirt1 clothColor={clothColor} />
-         <Shirt2 clothColor={clothColor} />
-         <Pants clothColor={clothColor} /> */}
+          ref={spotlightRef}
+        castShadow
+        penumbra={0.2}
+        radiusTop={0.4}
+        radiusBottom={40}
+        distance={80}
+        angle={0.90}
+        attenuation={20}
+        anglePower={5}
+        intensity={10}
+        opacity={0.2}
+        position={[-2,3,0]}
+        // target={[0, 0, 0]} // spot light should be targeted at the "Model" position
+        // rotation={20}
+      />
           {/* <OrbitControls /> */}
         </PresentationControls>
       </Canvas>
