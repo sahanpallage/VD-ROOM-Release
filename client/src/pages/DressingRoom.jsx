@@ -1,44 +1,46 @@
 import { Suspense, useEffect, useRef, useState } from "react"
 import { Canvas, useLoader, useFrame } from "@react-three/fiber";
-import { OrbitControls, Environment, Grid, ScrollControls, useScroll, 
-  Scroll, Text, Clone, PresentationControls } from "@react-three/drei";
+import {
+  OrbitControls, Environment, Grid, ScrollControls, useScroll,
+  Scroll, Text, Clone, PresentationControls, SpotLight
+} from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useParams } from "react-router-dom";
-  
+import "../components/DressingRoom/styles.css"
 
-const Overlay = ({setEnvironment, setColor, product}) => {
-  console.log(product);
+
+const Overlay = ({ setEnvironment, setColor, product }) => {
+  // console.log(product);
   return (
     <>
-    <div>html overlay</div>
-    <div>
-      <button onClick={()=>{setEnvironment("sunset")}}>sunset</button>
-      <button onClick={()=>{setEnvironment("city")}}>city</button>
-      <button onClick={()=>{setEnvironment("night")}}>night</button>
-      <button onClick={()=>{setEnvironment("apartment")}}>apartment</button>
-      <button onClick={()=>{setEnvironment("park")}}>park</button>
-    </div>
-    <div>
-      {/* <button onClick={()=>{setColor({isColor:true, r:132, g:165, b:80})}}>Green</button>
-      <button onClick={()=>{setColor({isColor:true, r:156, g:123, b:178})}}>White</button>
-      <button onClick={()=>{setColor({isColor:true, r:78, g:145, b:210})}}>Blue</button> */}
-     {product && product.colors && product.colors.map((color) => ( // Check if product and product.colors are not undefined
-          <button key={color.name} onClick={() => { setColor(color) }}>{color.name}</button>
-        ))}
-    </div>
+      <div className="main-container">
+        <div className="environment-selector">
+          <button onClick={() => { setEnvironment("sunset") }}>sunset</button>
+          <button onClick={() => { setEnvironment("city") }}>city</button>
+          <button onClick={() => { setEnvironment("night") }}>night</button>
+          <button onClick={() => { setEnvironment("apartment") }}>apartment</button>
+          <button onClick={() => { setEnvironment("warehouse") }}>warehouse</button>
+        </div>
+        <div className="color-selector">
+          {product && product.colors && product.colors.map((color) => ( // Check if product and product.colors are not undefined
+            <button key={color.name} onClick={() => { setColor(color) }}>{color.name}</button>
+          ))}
+        </div>
+        <div className="addtocart-btn">
+          <button onClick={() => { }}>Add to Cart</button>
+        </div>
+      </div>
     </>
-    
+
   )
 }
-
-
 
 const Model = () => {
   const mesh = useRef();
   const gltf = useLoader(GLTFLoader, "/models/HumanDummy.glb");
   const scroll = useScroll();
   const rotation = useRef();
-  
+
   return (
     <>
       <primitive ref={mesh} object={gltf.scene} scale={0.1} />
@@ -49,16 +51,16 @@ const Model = () => {
 const Shirt1 = (clothColor) => {
   const mesh = useRef();
   const gltf = useLoader(GLTFLoader, "/models/shirt2.glb");
-  // console.log(gltf)
+  console.log("shirt1")
 
   useEffect(() => {
-  gltf.materials["Material.001"].color.r = clothColor.clothColor.r / 255;
-  gltf.materials["Material.001"].color.g = clothColor.clothColor.g / 255;
-  gltf.materials["Material.001"].color.b = clothColor.clothColor.b / 255;
-  // console.log("shirt 1:"+gltf)
-}, [clothColor]);
+    gltf.materials["Material.001"].color.r = clothColor.clothColor.r / 255;
+    gltf.materials["Material.001"].color.g = clothColor.clothColor.g / 255;
+    gltf.materials["Material.001"].color.b = clothColor.clothColor.b / 255;
+    // console.log("shirt 1:"+gltf)
+  }, [clothColor]);
   return (
-    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[3,-3,0]}/>
+    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[3, -3, 0]} />
   )
 }
 
@@ -68,12 +70,12 @@ const Shirt2 = (clothColor) => {
   // console.log(gltf)
 
   useEffect(() => {
-  gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.r = clothColor.clothColor.r / 255;
-  gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.g = clothColor.clothColor.g / 255;
-  gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.b = clothColor.clothColor.b / 255;
-}, [clothColor]);
+    gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.r = clothColor.clothColor.r / 255;
+    gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.g = clothColor.clothColor.g / 255;
+    gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.b = clothColor.clothColor.b / 255;
+  }, [clothColor]);
   return (
-    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[-3,0,0]}/>
+    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[-3, -3, 0]} />
   )
 }
 
@@ -83,34 +85,61 @@ const Pants = (clothColor) => {
   console.log(gltf)
 
   useEffect(() => {
-  gltf.materials["SSC_Grey_Sweatpants"].color.r = clothColor.clothColor.r / 255;
-  gltf.materials["SSC_Grey_Sweatpants"].color.g = clothColor.clothColor.g / 255;
-  gltf.materials["SSC_Grey_Sweatpants"].color.b = clothColor.clothColor.b / 255;
-}, [clothColor]);
+    gltf.materials["SSC_Grey_Sweatpants"].color.r = clothColor.clothColor.r / 255;
+    gltf.materials["SSC_Grey_Sweatpants"].color.g = clothColor.clothColor.g / 255;
+    gltf.materials["SSC_Grey_Sweatpants"].color.b = clothColor.clothColor.b / 255;
+  }, [clothColor]);
 
   return (
-    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[-3,0,0]}/>
+    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[-3, 0, 0]} />
   )
 }
 
-const Experience = ({environmentPreset, clothColor}) => {
+const Models = ({ product, clothColor }) => {
+  let componentToRender;
+  console.log(product.product)
+  switch (product.product) {
+    case "shirt1":
+      componentToRender = <Shirt1 clothColor={clothColor} />;
+      break;
+    case "shirt2":
+      componentToRender = <Shirt2 clothColor={clothColor} />;
+      break;
+    case "jeans":
+      componentToRender = <Pants clothColor={clothColor} />;
+      break;
+    default:
+      componentToRender = <Model />;
+  }
 
+  return componentToRender;
+};
+
+const Experience = ({ environmentPreset, clothColor, product }) => {
 
   return (
     <>
-    <Canvas shadows camera={{ fov: 65 }}>
-    <PresentationControls speed={1.5} global zoom={0.5} polar={[-0.1, Math.PI / 4]}>
-         <Environment preset={environmentPreset} background={true} blur={0.5} />
-         {/* <ambientLight intensity={1} /> */}
-         <Model />
-         <Shirt1 clothColor={clothColor} />
+      <Canvas shadows camera={{ fov: 65 }}>
+        <PresentationControls speed={1.5} global zoom={0.5} polar={[-0.1, Math.PI / 4]}>
+          <Environment preset={environmentPreset} background={true} blur={0.5} />
+          {/* <ambientLight intensity={1} /> */}
+          <Model />
+          <Models product={product} clothColor={clothColor} />
+          <SpotLight
+            distance={5}
+            angle={0.55}
+            attenuation={5}
+            anglePower={5} // Diffuse-cone anglePower (default: 5)
+            position={[-4,2,2]}
+          />
+          {/* <Shirt1 clothColor={clothColor} />
          <Shirt2 clothColor={clothColor} />
-         <Pants clothColor={clothColor} />
-         <OrbitControls />
-         </PresentationControls>
-         </Canvas>
+         <Pants clothColor={clothColor} /> */}
+          {/* <OrbitControls /> */}
+        </PresentationControls>
+      </Canvas>
     </>
-    
+
   )
 }
 
@@ -119,7 +148,7 @@ const Experience = ({environmentPreset, clothColor}) => {
 export default function DressingRoom() {
 
   const [product, setProduct] = useState()
-  const {item} = useParams();
+  const { item } = useParams();
 
   useEffect(() => {
     // Sample data
@@ -173,9 +202,9 @@ export default function DressingRoom() {
   const [clothColor, setColor] = useState({ r: 255, g: 255, b: 255 })
 
   return (
-    <div className="droom" style={{ width:'100vw',height:'100vh'}}>
-        <Overlay setEnvironment={setEnvironment} setColor={setColor} product={product} />
-         <Experience environmentPreset={environmentPreset} clothColor={clothColor} product={product} />
+    <div className="droom" style={{ width: '100vw', height: '100vh' }}>
+      <Overlay setEnvironment={setEnvironment} setColor={setColor} product={product} />
+      <Experience environmentPreset={environmentPreset} clothColor={clothColor} product={product} />
     </div>
   )
 }
