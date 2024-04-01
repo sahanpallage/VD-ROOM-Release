@@ -53,3 +53,41 @@
     padding-bottom: 5px;
     margin-right: 20px;
 }
+
+.addtocart-btn {
+    display: flex;
+    padding: 1rem;
+    z-index: 99;
+    position: absolute;
+    right: 130px;
+    top: 520px;
+
+    /* border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff21;
+    backdrop-filter: blur(5px);
+    box-shadow: 2px 2px 8px #bebebe; */
+}
+
+.addtocart-btn button {
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: rgb(255, 200, 0);
+    color: rgb(0, 0, 0);
+}
+
+.logo {
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    z-index: 99;
+}
+
+
+.logo h1 {
+    font-size: 32px;
+}

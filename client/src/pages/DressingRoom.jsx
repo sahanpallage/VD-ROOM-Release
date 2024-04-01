@@ -14,12 +14,15 @@ const Overlay = ({ setEnvironment, setColor, product }) => {
   return (
     <>
       <div className="main-container">
+        <div className="logo">
+          <h1>VD-ROOM</h1>
+        </div>
         <div className="environment-selector">
+          <button onClick={() => { setEnvironment("city") }}>noon</button>
           <button onClick={() => { setEnvironment("sunset") }}>sunset</button>
-          <button onClick={() => { setEnvironment("city") }}>city</button>
           <button onClick={() => { setEnvironment("night") }}>night</button>
-          <button onClick={() => { setEnvironment("apartment") }}>apartment</button>
-          <button onClick={() => { setEnvironment("warehouse") }}>warehouse</button>
+          {/* <button onClick={() => { setEnvironment("apartment") }}>apartment</button>
+          <button onClick={() => { setEnvironment("warehouse") }}>warehouse</button> */}
         </div>
         <div className="color-selector">
           {product && product.colors && product.colors.map((color) => ( // Check if product and product.colors are not undefined
@@ -75,7 +78,7 @@ const Shirt2 = (clothColor) => {
     gltf.materials["Cotton_50s_Poplin_FRONT_39668"].color.b = clothColor.clothColor.b / 255;
   }, [clothColor]);
   return (
-    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[-3, -3, 0]} />
+    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[3, -3, 0]} />
   )
 }
 
@@ -91,7 +94,7 @@ const Pants = (clothColor) => {
   }, [clothColor]);
 
   return (
-    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[-3, 0, 0]} />
+    <primitive ref={mesh} object={gltf.scene} scale={2.5} position={[-3, -2, 0]} />
   )
 }
 
@@ -132,7 +135,7 @@ const Experience = ({ environmentPreset, clothColor, product }) => {
         }
       }
     }, 0);
-  
+
     return () => clearTimeout(timeoutId);
   }, [environmentPreset]);
 
@@ -141,25 +144,25 @@ const Experience = ({ environmentPreset, clothColor, product }) => {
       <Canvas shadows camera={{ fov: 65 }}>
         <PresentationControls speed={1.5} global zoom={0.5} polar={[-0.1, Math.PI / 4]}>
           <Environment preset={environmentPreset} background={true} blur={0.5} />
-          <ambientLight intensity={1} />
+          <ambientLight intensity={0.5} />
           <Model />
           <Models product={product} clothColor={clothColor} />
           <SpotLight
-          ref={spotlightRef}
-        castShadow
-        penumbra={0.2}
-        radiusTop={0.4}
-        radiusBottom={40}
-        distance={80}
-        angle={0.90}
-        attenuation={20}
-        anglePower={5}
-        intensity={10}
-        opacity={0.2}
-        position={[-2,3,0]}
-        // target={[0, 0, 0]} // spot light should be targeted at the "Model" position
-        // rotation={20}
-      />
+            ref={spotlightRef}
+            castShadow
+            penumbra={0.2}
+            radiusTop={0.4}
+            radiusBottom={40}
+            distance={80}
+            angle={0.90}
+            attenuation={20}
+            anglePower={5}
+            intensity={20}
+            opacity={0.2}
+            position={[-2, 3, 2]}
+          // target={[0, 0, 0]}
+          // rotation={20}
+          />
           {/* <OrbitControls /> */}
         </PresentationControls>
       </Canvas>
@@ -180,28 +183,32 @@ export default function DressingRoom() {
     const shirt1 = {
       product: "shirt1",
       colors: [
-        { name: "red", isColor: true, r: 132, g: 165, b: 80 },
-        { name: "green", isColor: true, r: 156, g: 123, b: 178 },
+        { name: "red", isColor: true, r: 241, g: 76, b: 60 },
+        { name: "green", isColor: true, r: 39, g: 174, b: 96 },
         { name: "blue", isColor: true, r: 78, g: 145, b: 210 },
+        { name: "white", isColor: true, r: 225, g: 225, b: 225 },
       ],
     };
 
     const shirt2 = {
       product: "shirt2",
       colors: [
-        { name: "red", isColor: true, r: 132, g: 165, b: 80 },
-        { name: "green", isColor: true, r: 156, g: 123, b: 178 },
+        { name: "red", isColor: true, r: 231, g: 76, b: 60 },
+        { name: "green", isColor: true, r: 39, g: 174, b: 96 },
         { name: "blue", isColor: true, r: 78, g: 145, b: 210 },
+        { name: "purple", isColor: true, r: 142, g: 68, b: 173 },
+        { name: "white", isColor: true, r: 225, g: 225, b: 225 },
       ],
     };
 
     const jeans = {
       product: "jeans",
       colors: [
-        { name: "red", isColor: true, r: 132, g: 165, b: 80 },
-        { name: "green", isColor: true, r: 156, g: 123, b: 178 },
+        { name: "orange", isColor: true, r: 230, g: 126, b: 34 },
+        { name: "green", isColor: true, r: 132, g: 165, b: 80 },
         { name: "blue", isColor: true, r: 78, g: 145, b: 210 },
-        { name: "purple", isColor: true, r: 78, g: 145, b: 210 },
+        { name: "red", isColor: true, r: 231, g: 76, b: 60 },
+        { name: "white", isColor: true, r: 225, g: 225, b: 225 },
       ],
     };
 
