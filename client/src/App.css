@@ -62,7 +62,7 @@ a {
 }
 .badge {
   padding: 5px 10px 5px !important;
-  border: 1px solid #1c1c1b;
+  border: none;
 }
 
 /* Navbar Part Start Here */
@@ -331,12 +331,49 @@ footer .input-group-text {
 
 /* Special Product */
 .special-product-card {
-  padding: 10px;
+  padding: 20px 10px;
   border-radius: 10px;
   background-color: white;
 }
 
 /* Special Product Ends Here */
+
+/* Famous Card stars */
+.famous-card .famous-content {
+  bottom: 10%;
+  left: 9%;
+}
+.famous-card img {
+  border-radius: 12px;
+  width: 450px;
+  height: 480px;
+}
+.famous-content h5 {
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 7px;
+}
+.famous-content h6 {
+  font-size: 24px;
+  line-height: 38px;
+  font-weight: 500px;
+  color: white;
+}
+.famous-content p {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 100;
+  color: white;
+}
+.text-slate-400 {
+  color: #94a3b8 !important;
+}
+.text-neutral-900 {
+  color: #171717 !important;
+}
+/* Famous Card Ends Here */
 
 /* auth card */
 .auth-card {

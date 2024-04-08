@@ -5,6 +5,10 @@ import BlogCard from "../components/BlogCard";
 import ProductCard from "../components/ProductCard";
 import SpecialProduct from "../components/SpecialProduct";
 import Container from "../components/Container";
+import famous1 from "../images/famous1.png";
+import famous2 from "../images/famous2.png";
+import famous3 from "../images/famous3.png";
+import famous4 from "../images/famous4.png";
 
 const Home = () => {
   return (
@@ -246,7 +250,63 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div className="section-special-wrapper py-5 home-wrapper-2">
+      <section className="famous-wrapper py-5 home-wrapper-2">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="col-3">
+              <div className="famous-card position-relative">
+                <img className="img-fluid" src={famous1} alt="" />
+                <div className="famous-content position-absolute">
+                  <h5 className="">Big Screen</h5>
+                  <h6 className="">Smart Watch Series 9</h6>
+                  <p className="">
+                    From LKR 120,000 or LKR 5,000/mo. for 24 mo.*
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-3 bg-white" style={{ borderRadius: "12px" }}>
+              <div className="famous-card position-relative">
+                <img className="img-fluid" src={famous2} alt="" />
+                <div className="famous-content position-absolute">
+                  <h5 className="text-slate-400">Trending Outfits</h5>
+                  <h6 className="text-slate-400">
+                    T-shirt Dress Sleeve Clothing Skirt
+                  </h6>
+                  <p className="text-slate-400">
+                    Comfortable, Stretching, Living
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-3 bg-white" style={{ borderRadius: "12px" }}>
+              <div className="famous-card position-relative">
+                <img className="img-fluid" src={famous3} alt="" />
+                <div className="famous-content position-absolute">
+                  <h5 className="text-silver">Trending Outfits</h5>
+                  <h6 className="text-silver">White crew-neck shirt</h6>
+                  <p className="text-silver">
+                    Slim-Fit, Attractive, Satisfaction
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="col-3 bg-white" style={{ borderRadius: "12px" }}>
+              <div className="famous-card position-relative">
+                <img className="img-fluid" src={famous4} alt="" />
+                <div className="famous-content position-absolute">
+                  <h5 className="text-silver">Trending Outfits</h5>
+                  <h6 className="text-silver">
+                    T-shirt Dress Sleeve Clothing Skirt
+                  </h6>
+                  <p className="text-silver">Comfortable, Stretching, Living</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="special-wrapper py-5 home-wrapper-2">
         <div className="container-xxl">
           <div className="row">
             <div className="col-12">
@@ -259,7 +319,22 @@ const Home = () => {
             <SpecialProduct />
           </div>
         </div>
-      </div>
+      </section>
+      <section className="popular-wrapper py-5 home-wrapper-2">
+        <div className="container-xxl">
+          <div className="row">
+            <div className="col-12">
+              <h3 className="section-heading">Our Popular Products</h3>
+            </div>
+          </div>
+          <div className="row">
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+            <ProductCard />
+          </div>
+        </div>
+      </section>
       <section className="marquee-wrapper home-wrapper-2 py-5">
         <div className="container-xxl">
           <div className="row">
