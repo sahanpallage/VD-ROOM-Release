@@ -33,6 +33,7 @@ import SingleProduct from "./pages/customer/SingleProduct";
 import Cart from "./pages/customer/Cart";
 import Checkout from "./pages/customer/Checkout";
 import Blog from "./pages/customer/Blog";
+import CompareProduct from "./pages/customer/CompareProduct";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="blogs" element={<Blog />} />
             <Route path="store" element={<OurStore />} />
+            <Route path="compare-product" element={<CompareProduct />} />
             <Route path="product/:id" element={<SingleProduct />} />
             <Route path="cus-login" element={<LoginCustomer />} />
             <Route path="cart" element={<Cart />} />

@@ -59,7 +59,10 @@ const Navbar = () => {
             <div className="col-5">
               <div className="nav-upper-links d-flex align-items-center justify-content-between">
                 <div>
-                  <Link className="d-flex align-items-center gap-10 text-white">
+                  <Link
+                    to="/compare-product"
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
                     <img src={compare2} alt="compare" />
                     <p className="mb-0 custom-text-nav">
                       Compare <br /> Clothes
@@ -67,7 +70,10 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link className="d-flex align-items-center gap-10 text-white">
+                  <Link
+                    to="/wishlist"
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
                     <img src={wishlist} alt="wishlist" />
                     <p className="mb-0 custom-text-nav">
                       Favorite <br /> Wishlist
@@ -86,7 +92,10 @@ const Navbar = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link className="d-flex align-items-center gap-10 text-white">
+                  <Link
+                    to="/social-feed"
+                    className="d-flex align-items-center gap-10 text-white"
+                  >
                     <img src={social} alt="social" />
                     <p className="mb-0 custom-text-nav">
                       Social <br /> Feed
