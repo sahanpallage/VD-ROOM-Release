@@ -14,49 +14,108 @@ const ProductCard = (props) => {
   let location = useLocation();
 
   return (
-    <div className={location.pathname === "/store" ? `gr-${grid}` : "col-3"}>
-      <Link to="/product/:id" className="product-card position-relative">
-        <div className="wishlist-icon position-absolute">
-          <button className="border-0 bg-transparent">
-            <img src={heart} alt="wishlist" />
-          </button>
-        </div>
-        <div className="product-image">
-          <img className="img-fluid" src={watch} alt="watch" />
-          <img className="img-fluid" src={watch1} alt="watch" />
-        </div>
-        <div className="product-details">
-          <h6 className="brand">Apple</h6>
-          <h5 className="product-title">
-            Apple Watch Series 8 GPS + Cellular, 40mm
-          </h5>
-          <ReactStars
-            count={5}
-            size={24}
-            value={4}
-            edit={false}
-            activeColor="#ffd700"
-          />
-          <p className="price">LKR 180,000</p>
-        </div>
-        <div className="action-bar position-absolute">
-          <div className="d-flex flex-column gap-15">
+    <>
+      <div
+        className={`${location.pathname === "/store" ? `gr-${grid}` : "col-3"}`}
+      >
+        <Link to="/product/:id" className="product-card position-relative">
+          <div className="wishlist-icon position-absolute">
             <button className="border-0 bg-transparent">
-              <img src={crossarrows} alt="compare" />
-            </button>
-            <button className="border-0 bg-transparent">
-              <img src={addcart} alt="addToCart" />
-            </button>
-            <button className="border-0 bg-transparent">
-              <img src={view} alt="view" />
-            </button>
-            <button className="border-0 bg-transparent">
-              <img src={vr} alt="3dModel" />
+              <img src={heart} alt="wishlist" />
             </button>
           </div>
-        </div>
-      </Link>
-    </div>
+          <div className="product-image">
+            <img className="" src={watch} alt="watch" />
+            <img className="" src={watch1} alt="watch" />
+          </div>
+          <div className="product-details">
+            <h6 className="brand">Apple</h6>
+            <h5 className="product-title">
+              Apple Watch Series 8 GPS + Cellular, 40mm
+            </h5>
+            <ReactStars
+              count={5}
+              size={24}
+              value={4}
+              edit={false}
+              activeColor="#ffd700"
+            />
+            <p className={`description ${grid === 12 ? "d-block" : "d-none"}`}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Repellendus vel quibusdam nihil reiciendis porro libero incidunt
+              quis praesentium.
+            </p>
+            <p className="price">LKR 180,000</p>
+          </div>
+          <div className="action-bar position-absolute">
+            <div className="d-flex flex-column gap-15">
+              <button className="border-0 bg-transparent">
+                <img src={crossarrows} alt="compare" />
+              </button>
+              <button className="border-0 bg-transparent">
+                <img src={addcart} alt="addToCart" />
+              </button>
+              <button className="border-0 bg-transparent">
+                <img src={view} alt="view" />
+              </button>
+              <button className="border-0 bg-transparent">
+                <img src={vr} alt="3dModel" />
+              </button>
+            </div>
+          </div>
+        </Link>
+      </div>
+      <div
+        className={`${location.pathname === "/store" ? `gr-${grid}` : "col-3"}`}
+      >
+        <Link to="/product/:id" className="product-card position-relative">
+          <div className="wishlist-icon position-absolute">
+            <button className="border-0 bg-transparent">
+              <img src={heart} alt="wishlist" />
+            </button>
+          </div>
+          <div className="product-image">
+            <img className="" src={watch} alt="watch" />
+            <img className="" src={watch1} alt="watch" />
+          </div>
+          <div className="product-details">
+            <h6 className="brand">Apple</h6>
+            <h5 className="product-title">
+              Apple Watch Series 8 GPS + Cellular, 40mm
+            </h5>
+            <ReactStars
+              count={5}
+              size={24}
+              value={4}
+              edit={false}
+              activeColor="#ffd700"
+            />
+            <p className={`description ${grid === 12 ? "d-block" : "d-none"}`}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Repellendus vel quibusdam nihil reiciendis porro libero incidunt
+              quis praesentium.
+            </p>
+            <p className="price">LKR 180,000</p>
+          </div>
+          <div className="action-bar position-absolute">
+            <div className="d-flex flex-column gap-15">
+              <button className="border-0 bg-transparent">
+                <img src={crossarrows} alt="compare" />
+              </button>
+              <button className="border-0 bg-transparent">
+                <img src={addcart} alt="addToCart" />
+              </button>
+              <button className="border-0 bg-transparent">
+                <img src={view} alt="view" />
+              </button>
+              <button className="border-0 bg-transparent">
+                <img src={vr} alt="3dModel" />
+              </button>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </>
   );
 };
 

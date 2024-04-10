@@ -32,6 +32,7 @@ import ResetPasswordCustomer from "./pages/customer/ResetPassword";
 import SingleProduct from "./pages/customer/SingleProduct";
 import Cart from "./pages/customer/Cart";
 import Checkout from "./pages/customer/Checkout";
+import Blog from "./pages/customer/Blog";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="blogs" element={<Blog />} />
             <Route path="store" element={<OurStore />} />
             <Route path="product/:id" element={<SingleProduct />} />
             <Route path="cus-login" element={<LoginCustomer />} />
