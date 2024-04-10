@@ -25,7 +25,7 @@ import AddColor from "./pages/AddColor";
 import AddCategory from "./pages/AddCategory";
 import AddProduct from "./pages/AddProduct";
 import AddBrand from "./pages/AddBrand";
-import OurStore from "./pages/OurStore";
+import OurStore from "./pages/customer/OurStore";
 import ForgotPasswordCustomer from "./pages/customer/ForgotPassword";
 import SignUp from "./pages/customer/SignUp";
 import ResetPasswordCustomer from "./pages/customer/ResetPassword";

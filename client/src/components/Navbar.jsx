@@ -7,6 +7,7 @@ import user from "../images/user.svg";
 import social from "../images/social.svg";
 import cart from "../images/cart.svg";
 import menu from "../images/menu.svg";
+import Meta from "./Meta";
 
 const Navbar = () => {
   return (
@@ -35,7 +36,10 @@ const Navbar = () => {
           <div className="row align-items-center">
             <div className="col-2">
               <h2>
-                <Link className="text-white">VD-ROOM</Link>
+                <Meta title={"Home"} />
+                <Link to="/" className="text-white">
+                  VD-ROOM
+                </Link>
               </h2>
             </div>
             <div className="col-5">
@@ -150,7 +154,7 @@ const Navbar = () => {
                 <div className="menu-links">
                   <div className="d-flex align-items-center gap-15">
                     <NavLink to="/">Home</NavLink>
-                    <NavLink to="/product">Our Store</NavLink>
+                    <NavLink to="/store">Our Store</NavLink>
                     <NavLink to="/">Blogs</NavLink>
                     <NavLink to="/contact">Contact</NavLink>
                   </div>

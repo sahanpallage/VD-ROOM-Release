@@ -14,6 +14,9 @@
   --color-777777: #777777;
   --color-1c1c1b: #1c1c1b;
   --color-777777: #777777;
+  --color-3b4149: #3b4149;
+  --color-ededed: #ededed;
+  --color-f2f2f2: #f2f2f2;
 }
 .section-heading {
   font-size: 26px;
@@ -344,11 +347,12 @@ footer .input-group-text {
   left: 9%;
 }
 .famous-card img {
-  border-radius: 12px;
+  border-radius: 6px;
   width: 450px;
   height: 480px;
 }
 .famous-content h5 {
+  text-transform: uppercase;
   font-size: 13px;
   line-height: 20px;
   font-weight: 400;
@@ -372,6 +376,9 @@ footer .input-group-text {
 }
 .text-neutral-900 {
   color: #171717 !important;
+}
+.text-stone-400 {
+  color: #a8a29e !important;
 }
 /* Famous Card Ends Here */
 
@@ -573,3 +580,76 @@ footer .input-group-text {
 }
 
 /* Shipping Page Ends Here */
+
+/* Our Store Starts Here */
+.filter-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px 15px 25px;
+}
+.filter-title {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--color-1c1c1b);
+  margin-bottom: 20px;
+}
+.filter-card ul,
+.filter-card .form-check-label {
+  list-style-type: none;
+  font-size: 13px;
+  line-height: 30px;
+  color: var(--color-777777);
+  cursor: pointer;
+}
+.filter-card .form-check-input:focus {
+  box-shadow: none;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+.filter-card .form-check-input:checked {
+  background-color: var(--color-211319);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+.sub-title2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-1c1c1b);
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+.colors {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.colors li {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+.random-products h5 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  margin-left: 7px;
+}
+.random-products b,
+.rating {
+  margin-left: 7px;
+}
+.random-products:first-child {
+  border-bottom: 1px solid var(--color-ededed);
+  padding-bottom: 6px;
+}
+.filter-sort-grid {
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+.grid img {
+  background-color: var(--color-f2f2f2);
+  padding: 6px;
+  border-radius: 3px;
+}
+/* Our Store Ends Here */
