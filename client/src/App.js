@@ -34,6 +34,8 @@ import Cart from "./pages/customer/Cart";
 import Checkout from "./pages/customer/Checkout";
 import Blog from "./pages/customer/Blog";
 import CompareProduct from "./pages/customer/CompareProduct";
+import Wishlist from "./pages/customer/Wishlist";
+import SingleBlog from "./pages/customer/SingleBlog";
 
 function App() {
   return (
@@ -45,8 +47,10 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="blogs" element={<Blog />} />
+            <Route path="blogs/:id" element={<SingleBlog />} />
             <Route path="store" element={<OurStore />} />
             <Route path="compare-product" element={<CompareProduct />} />
+            <Route path="wishlist" element={<Wishlist />} />
             <Route path="product/:id" element={<SingleProduct />} />
             <Route path="cus-login" element={<LoginCustomer />} />
             <Route path="cart" element={<Cart />} />

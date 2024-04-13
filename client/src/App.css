@@ -63,8 +63,12 @@ a {
   font-size: 0.8rem;
 }
 .badge {
-  padding: 5px 10px 5px !important;
+  padding: 5px 5px 5px !important; /* reduce horizontal padding */
   border: none;
+  max-width: 35px; /* set a maximum width */
+  white-space: nowrap; /* prevent text from wrapping to the next line */
+  overflow: hidden; /* hide text that exceeds the width */
+  text-overflow: ellipsis; /* add an ellipsis (...) when the text overflows */
 }
 
 /* Navbar Part Start Here */
@@ -282,6 +286,23 @@ footer .input-group-text {
   color: var(--color-777777);
 }
 /* Blog Page Ends Here */
+
+/* Single Blog Page Starts */
+.single-blog-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-1c1c1b);
+}
+.single-blog-card p {
+  font-size: 14px;
+  color: var(--color-777777);
+}
+.single-blog-card a {
+  font-size: 18px;
+  color: var(--color-777777);
+  margin-bottom: 20px;
+}
+/* Single Blog Page Ends */
 
 /* Product Card */
 .product-card {
@@ -731,5 +752,33 @@ footer .input-group-text {
   padding: 20px 15px;
   background-color: white;
   border-radius: 10px;
+}
+.compare-product-card .cross,
+.wishlist-card .cross {
+  top: 15px;
+  right: 15px;
+  width: 25px;
+  padding: 3px;
+  cursor: pointer;
+}
+.compare-product-details h5.title,
+.wishlist-card h5.title {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+  color: var(--color-1c1c1b);
+}
+.compare-product-details h6.price,
+.wishlist-card h6.price {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 400;
+}
+.compare-product-card .product-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 /* Compare Product Page Ends Here*/
