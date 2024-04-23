@@ -15,6 +15,8 @@ import { createProducts } from "../features/product/productSlice";
 import { useEffect, useState } from "react";
 import CustomInput from "../components/CustomInput";
 import customerToast from "../components/common/CustomToast";
+import { useNavigate } from "react-router-dom";
+import { set } from "@ant-design/plots/es/core/utils";
 
 let Schema = Yup.object({
   title: Yup.string().required("Title is required"),
@@ -31,6 +33,7 @@ let Schema = Yup.object({
 
 const AddProduct = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [color, setColor] = useState([]);
   const [images, setImages] = useState([]);
 
@@ -66,8 +69,6 @@ const AddProduct = () => {
     formik.values.images = img;
   }, [color, img]);
 
-  const productState = useSelector((state) => state);
-
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -86,6 +87,9 @@ const AddProduct = () => {
         dispatch(createProducts(values));
         customerToast("Product Added Successfully", "success");
         formik.resetForm();
+        setTimeout(() => {
+          navigate("/admin/product-list");
+        }, 3000);
       } else {
         customerToast("Product Not Added", "error");
       }
@@ -258,7 +262,7 @@ const AddProduct = () => {
             })}
           </div>
           <button
-            className="btn btn-success border-0 rounded-3 my-5"
+            className="btn btn-success border-0 rounded-3 my-5 px-5 fw-bold"
             type="submit"
           >
             Add Product
