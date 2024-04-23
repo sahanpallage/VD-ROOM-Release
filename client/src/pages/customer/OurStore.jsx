@@ -195,15 +195,15 @@ const OurStore = () => {
                     Sort By:
                   </p>
                   <select
+                    defaultValue={"DEFAULT"}
                     className="form-control form-select"
                     style={{ outline: "none" }}
                     name=""
                     id=""
                   >
-                    <option value="manual">Featured</option>
-                    <option value="best-selling" selected="selected">
-                      Best Selling
-                    </option>
+                    <option value="DEFAULT">Select</option>
+                    <option value="featured">Featured</option>
+                    <option value="best-selling">Best Selling</option>
                     <option value="title-ascending">Alphabetically, A-Z</option>
                     <option value="title-descending">
                       Alphabetically, Z-A

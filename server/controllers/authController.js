@@ -332,7 +332,7 @@ export const userCart = asyncHandler(async (req, res) => {
     // Check if user already have products in cart
     const alreadyExistCart = await CartModel.findOne({ orderBy: user._id });
     if (alreadyExistCart) {
-      alreadyExistCart.deleteOne();
+      await alreadyExistCart.deleteOne();
     }
     for (let i = 0; i < cart.length; i++) {
       let object = {};

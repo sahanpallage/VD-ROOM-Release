@@ -173,7 +173,10 @@ const MainLayout = () => {
           <div className="d-flex gap-4 align-items-center">
             <div className="position-relative">
               <MdNotifications className="fs-4" />
-              <span className="badge bg-warning rounded-circle p-1 position-absolute">
+              <span
+                className="badge bg-warning rounded-circle p-2 position-absolute"
+                style={{ right: "-5px" }}
+              >
                 3
               </span>
             </div>

@@ -14,10 +14,11 @@ import { deleteImg, uploadImg } from "../features/upload/uploadSlice";
 import { createProducts } from "../features/product/productSlice";
 import { useEffect, useState } from "react";
 import CustomInput from "../components/CustomInput";
+import customerToast from "../components/common/CustomToast";
 
 let Schema = Yup.object({
   title: Yup.string().required("Title is required"),
-  description: Yup.string().required("Description is required").min(5).max(15),
+  description: Yup.string().required("Description is required").min(5).max(200),
   price: Yup.number().required("Price is required"),
   brand: Yup.string().required("Brand is required"),
   category: Yup.string().required("Category is required"),
@@ -65,6 +66,8 @@ const AddProduct = () => {
     formik.values.images = img;
   }, [color, img]);
 
+  const productState = useSelector((state) => state);
+
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -79,8 +82,13 @@ const AddProduct = () => {
     },
     validationSchema: Schema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values));
-      dispatch(createProducts(values));
+      if (Object.keys(formik.errors).length === 0) {
+        dispatch(createProducts(values));
+        customerToast("Product Added Successfully", "success");
+        formik.resetForm();
+      } else {
+        customerToast("Product Not Added", "error");
+      }
     },
   });
 
@@ -219,11 +227,12 @@ const AddProduct = () => {
           </div>
           <div className="bg-white border-1 p-5 text-center">
             <Dropzone
+              className="drop-zone"
               onDrop={(acceptedFiles) => dispatch(uploadImg(acceptedFiles))}
             >
               {({ getRootProps, getInputProps }) => (
                 <section>
-                  <div {...getRootProps()}>
+                  <div {...getRootProps()} style={{ cursor: "pointer" }}>
                     <input {...getInputProps()} />
                     <p>
                       Drag and drop some files here, or click to select files

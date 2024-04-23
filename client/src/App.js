@@ -40,6 +40,7 @@ import PrivacyPolicy from "./pages/customer/PrivacyPolicy";
 import RefundPolicy from "./pages/customer/RefundPolicy";
 import TermsAndConditions from "./pages/customer/TermsAndConditions";
 import ShippingPolicy from "./pages/customer/ShippingPolicy";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -89,6 +90,7 @@ function App() {
             <Route path="product" element={<AddProduct />} />
           </Route>
         </Routes>
+        <ToastContainer position="top-center" autoClose={2000} />
       </BrowserRouter>
     </>
   );

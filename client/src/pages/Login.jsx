@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import "../index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../features/auth/authSlice.js";
+import customerToast from "../components/common/CustomToast.js";
 
 let loginSchema = Yup.object({
   email: Yup.string().email().required(),
@@ -24,7 +25,6 @@ const Login = () => {
     validationSchema: loginSchema,
     onSubmit: (values) => {
       dispatch(login(values));
-      alert(JSON.stringify(values, null, 2));
     },
   });
 
@@ -33,8 +33,10 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess) {
+      customerToast("User Successfully logged in !", "success");
       navigateTo("/admin");
     } else {
+      customerToast("Invalid credentials", "error");
       navigateTo("");
     }
   }, [user, isLoading, isError, isSuccess]);
