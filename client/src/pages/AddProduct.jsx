@@ -262,7 +262,7 @@ const AddProduct = () => {
             })}
           </div>
           <button
-            className="btn btn-success border-0 rounded-3 my-5 px-5 fw-bold"
+            className="btn btn-success border-0 rounded-3 my-5 px-4 fw-bold"
             type="submit"
           >
             Add Product
