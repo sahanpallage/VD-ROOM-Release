@@ -39,11 +39,12 @@ const AddBrand = () => {
         <form action="" onSubmit={formik.handleSubmit}>
           <CustomInput
             type="text"
-            label="Enter A Brand"
             name="title"
-            onCh={formik.handleChange}
-            onBl={formik.handleBlur}
+            label="Enter A Brand"
+            onCh={formik.handleChange("title")}
+            onBl={formik.handleBlur("title")}
             val={formik.values.title}
+            id="brand"
           />
           <div className="error">
             {formik.touched.title && formik.errors.title}
