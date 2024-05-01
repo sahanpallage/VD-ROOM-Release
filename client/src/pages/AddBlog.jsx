@@ -58,7 +58,7 @@ const AddBlog = () => {
               uploading company data or other banned files.
             </p>
           </Dragger>
-          <div className="mt-4">
+          <div className="mt-4 mb-3">
             <CustomInput type="text" label="Enter Blog Title" />
           </div>
           <select name="" className="form-control py-3 mb-3" id="">
