@@ -793,3 +793,7 @@ footer .input-group-text {
 .custom-link:hover {
   text-decoration: underline;
 }
+
+.orange-toast {
+  background-color: orange !important;
+}

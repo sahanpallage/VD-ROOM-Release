@@ -1,12 +1,20 @@
 import { Flip, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const customerToast = (message, type) => {
+const customToast = (message, type, isOrange = false) => {
   if (type === "success") {
-    toast.success(message, {
-      transition: Flip,
-      theme: "colored",
-    });
+    if (isOrange) {
+      toast.success(message, {
+        transition: Flip,
+        className: "orange-toast",
+        theme: "colored",
+      });
+    } else {
+      toast.success(message, {
+        transition: Flip,
+        theme: "colored",
+      });
+    }
   } else if (type === "error") {
     toast.error(message, {
       transition: Flip,
@@ -20,4 +28,4 @@ const customerToast = (message, type) => {
   }
 };
 
-export default customerToast;
+export default customToast;
