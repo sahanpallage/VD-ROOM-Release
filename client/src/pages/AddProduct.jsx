@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
 import CustomInput from "../components/CustomInput";
 import customerToast from "../components/common/CustomToast";
 import { useNavigate } from "react-router-dom";
-import { set } from "@ant-design/plots/es/core/utils";
 
 let Schema = Yup.object({
   title: Yup.string().required("Title is required"),
