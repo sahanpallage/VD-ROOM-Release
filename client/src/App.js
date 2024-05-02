@@ -41,6 +41,8 @@ import RefundPolicy from "./pages/customer/RefundPolicy";
 import TermsAndConditions from "./pages/customer/TermsAndConditions";
 import ShippingPolicy from "./pages/customer/ShippingPolicy";
 import { ToastContainer } from "react-toastify";
+import CouponList from "./pages/CouponList";
+import AddCoupon from "./pages/AddCoupon";
 
 function App() {
   return (
@@ -76,6 +78,8 @@ function App() {
             <Route path="enquiries" element={<Enquiries />} />
             <Route path="blog-list" element={<Bloglist />} />
             <Route path="blog" element={<AddBlog />} />
+            <Route path="coupon" element={<AddCoupon />} />
+            <Route path="coupon-list" element={<CouponList />} />
             <Route path="blog-category-list" element={<BlogCatlist />} />
             <Route path="blog-category" element={<AddBlogCat />} />
             <Route path="orders" element={<Orders />} />

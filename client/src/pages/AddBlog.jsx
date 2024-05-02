@@ -11,7 +11,6 @@ import customerToast from "../components/common/CustomToast";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Dropzone from "react-dropzone";
-import { getProdCategories } from "../features/prodCategory/prodCategorySlice";
 import { createBlog } from "../features/blog/blogSlice";
 import { getBlogCategories } from "../features/blogCategory/blogCategorySlice";
 

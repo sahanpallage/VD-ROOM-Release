@@ -4,6 +4,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { Link, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { RiCoupon3Fill } from "react-icons/ri";
 import {
   MdAddToPhotos,
   MdChecklist,
@@ -13,6 +14,7 @@ import {
   MdOutlineAddShoppingCart,
   MdOutlineShoppingCartCheckout,
   MdSupportAgent,
+  MdOutlineChecklist,
 } from "react-icons/md";
 import {
   AiOutlineDashboard,
@@ -26,6 +28,7 @@ import {
   LiaListUlSolid,
   LiaBlogSolid,
 } from "react-icons/lia";
+import { FaShopify } from "react-icons/fa";
 import { SiBrandfolder } from "react-icons/si";
 const { Header, Sider, Content } = Layout;
 
@@ -83,7 +86,7 @@ const MainLayout = () => {
                 {
                   key: "brand",
                   icon: <SiBrandfolder className="fs-4" />,
-                  label: "Brand",
+                  label: "Add Brand",
                 },
                 {
                   key: "list-brand",
@@ -93,7 +96,7 @@ const MainLayout = () => {
                 {
                   key: "category",
                   icon: <BiCategoryAlt className="fs-4" />,
-                  label: "Category",
+                  label: "Add Category",
                 },
                 {
                   key: "list-category",
@@ -103,7 +106,7 @@ const MainLayout = () => {
                 {
                   key: "color",
                   icon: <AiOutlineBgColors className="fs-4" />,
-                  label: "Color",
+                  label: "Add Color",
                 },
                 {
                   key: "color-list",
@@ -141,6 +144,23 @@ const MainLayout = () => {
                   key: "blog-category-list",
                   icon: <MdChecklistRtl className="fs-4" />,
                   label: "Blog Category List",
+                },
+              ],
+            },
+            {
+              key: "marketing",
+              icon: <FaShopify className="fs-4" />,
+              label: "Marketing",
+              children: [
+                {
+                  key: "coupon",
+                  icon: <RiCoupon3Fill className="fs-4" />,
+                  label: "Add Coupon",
+                },
+                {
+                  key: "coupon-list",
+                  icon: <MdOutlineChecklist className="fs-4" />,
+                  label: "Coupon List",
                 },
               ],
             },
