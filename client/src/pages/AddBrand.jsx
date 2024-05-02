@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import {
   createBrand,
   getABrand,
+  resetState,
   updateBrand,
 } from "../features/brand/brandSlice";
 import customerToast from "../components/common/CustomToast";
@@ -18,15 +19,17 @@ let Schema = Yup.object({
 const AddBrand = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const getBrandId = location.pathname.split("/")[3];
   const newBrand = useSelector((state) => state.brand);
   const { brandName } = newBrand;
   useEffect(() => {
     if (getBrandId !== undefined) {
       dispatch(getABrand(getBrandId));
+    } else {
+      dispatch(resetState());
     }
   }, [getBrandId]);
-  const navigate = useNavigate();
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -40,14 +43,15 @@ const AddBrand = () => {
         customerToast("Brand Updated Successfully", "success", true);
         setTimeout(() => {
           navigate("/admin/list-brand");
-        }, 3000);
+        }, 1000);
       } else if (Object.keys(formik.errors).length === 0) {
         dispatch(createBrand(values));
         customerToast("Brand Added Successfully", "success");
         formik.resetForm();
         setTimeout(() => {
+          dispatch(resetState());
           navigate("/admin/list-brand");
-        }, 3000);
+        }, 1000);
       } else {
         customerToast("Brand Not Added", "error");
       }
@@ -76,7 +80,7 @@ const AddBrand = () => {
             className="btn btn-success border-0 rounded-3 my-5 px-4 fw-bold"
             type="submit"
           >
-            Add Brand
+            {getBrandId !== undefined ? "Update" : "Add"} Brand
           </button>
         </form>
       </div>

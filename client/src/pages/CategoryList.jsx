@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getProdCategories } from "../features/prodCategory/prodCategorySlice";
-import Link from "antd/es/typography/Link";
 import { TbEdit } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const columns = [
   {
@@ -37,7 +37,10 @@ const CategoryList = () => {
       title: prodCategoryState[i].title,
       action: (
         <>
-          <Link className=" fs-5 text-warning" to="">
+          <Link
+            className=" fs-5 text-warning"
+            to={`/admin/category/${prodCategoryState[i]._id}`}
+          >
             <TbEdit />
           </Link>
           <Link className="ms-2 fs-5 text-danger" to="">

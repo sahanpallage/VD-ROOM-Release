@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CustomInput from "../components/CustomInput";
 import customerToast from "../components/common/CustomToast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { createColor } from "../features/color/colorSlice";
+import {
+  createColor,
+  getAColor,
+  resetState,
+  updateColor,
+} from "../features/color/colorSlice";
 
 let Schema = Yup.object({
   title: Yup.string().required("Color Name is required"),
@@ -14,17 +19,37 @@ let Schema = Yup.object({
 const AddColor = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const getColorId = location.pathname.split("/")[3];
+  const newColor = useSelector((state) => state.color);
+  const { colorName } = newColor;
+  useEffect(() => {
+    if (getColorId !== undefined) {
+      dispatch(getAColor(getColorId));
+    } else {
+      dispatch(resetState());
+    }
+  }, [getColorId]);
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      title: "",
+      title: colorName || "",
     },
     validationSchema: Schema,
     onSubmit: (values) => {
-      if (Object.keys(formik.errors).length === 0) {
+      if (getColorId !== undefined && Object.keys(formik.errors).length === 0) {
+        const data = { id: getColorId, colorData: values };
+        dispatch(updateColor(data));
+        customerToast("Color Updated Successfully", "success", true);
+        setTimeout(() => {
+          navigate("/admin/color-list");
+        }, 3000);
+      } else if (Object.keys(formik.errors).length === 0) {
         dispatch(createColor(values));
         customerToast("Color Added Successfully", "success");
         formik.resetForm();
         setTimeout(() => {
+          dispatch(resetState());
           navigate("/admin/color-list");
         }, 3000);
       } else {
@@ -34,7 +59,9 @@ const AddColor = () => {
   });
   return (
     <div>
-      <h3 className="mb-4 title">Add Color</h3>
+      <h3 className="mb-4 title">
+        {getColorId !== undefined ? "Edit" : "Add"} Color
+      </h3>
       <div>
         <form action="" onSubmit={formik.handleSubmit}>
           <CustomInput
@@ -50,10 +77,10 @@ const AddColor = () => {
             {formik.touched.title && formik.errors.title}
           </div>
           <button
-            className="btn btn-success border-0 rounded-3 my-5"
+            className="btn btn-success border-0 rounded-3 my-5 fw-bold px-4"
             type="submit"
           >
-            Add Color
+            {getColorId !== undefined ? "Update" : "Add"} Color
           </button>
         </form>
       </div>

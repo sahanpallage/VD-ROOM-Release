@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getBrands } from "../features/brand/brandSlice";
+import {
+  deleteABrand,
+  getBrands,
+  resetState,
+} from "../features/brand/brandSlice";
 import { Link } from "react-router-dom";
 import { TbEdit } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import CustomModal from "../components/CustomModal";
 
 const columns = [
   {
@@ -23,8 +28,18 @@ const columns = [
 ];
 
 const BrandList = () => {
+  const [open, setOpen] = useState(false);
+  const [brandId, setBrandId] = useState("");
+  const showModal = (e) => {
+    setOpen(true);
+    setBrandId(e);
+  };
+  const hideModal = () => {
+    setOpen(false);
+  };
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(resetState());
     dispatch(getBrands());
   }, []);
   const brandState = useSelector((state) => state.brand.brands);
@@ -41,19 +56,37 @@ const BrandList = () => {
           >
             <TbEdit />
           </Link>
-          <Link className="ms-2 fs-5 text-danger" to="">
+          <button
+            className="ms-2 fs-5 text-danger bg-transparent border-0"
+            onClick={() => showModal(brandState[i]._id)}
+          >
             <RiDeleteBin5Line />
-          </Link>
+          </button>
         </>
       ),
     });
   }
+  const deleteBrand = (e) => {
+    dispatch(deleteABrand(e)).then(() => {
+      setOpen(false);
+      dispatch(getBrands());
+    });
+  };
+
   return (
     <div>
       <h3 className="mb-4 title">Brands</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
+      <CustomModal
+        hideModal={hideModal}
+        open={open}
+        performAction={() => {
+          deleteBrand(brandId);
+        }}
+        title="Are you sure you want to delete this brand?"
+      />
     </div>
   );
 };

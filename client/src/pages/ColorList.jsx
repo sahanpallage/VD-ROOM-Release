@@ -35,7 +35,10 @@ const ColorList = () => {
       title: colorState[i].title,
       action: (
         <>
-          <Link className=" fs-5 text-warning" to="">
+          <Link
+            className=" fs-5 text-warning"
+            to={`/admin/color/${colorState[i]._id}`}
+          >
             <TbEdit />
           </Link>
           <Link className="ms-2 fs-5 text-danger" to="">

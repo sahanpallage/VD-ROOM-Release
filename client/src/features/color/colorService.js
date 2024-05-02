@@ -12,9 +12,25 @@ const createColor = async (color) => {
   return response.data;
 };
 
+const updateColor = async (color) => {
+  const response = await axios.put(
+    `${base_url}color/${color.id}`,
+    { title: color.colorData.title },
+    config
+  );
+  return response.data;
+};
+
+const getAColor = async (id) => {
+  const response = await axios.get(`${base_url}color/${id}`, config);
+  return response.data;
+};
+
 const colorService = {
   getColors,
   createColor,
+  getAColor,
+  updateColor,
 };
 
 export default colorService;
