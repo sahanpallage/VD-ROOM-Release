@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { getCoupons } from "../features/coupon/couponSlice";
+import {
+  deleteACoupon,
+  getCoupons,
+  resetState,
+} from "../features/coupon/couponSlice";
+import CustomModal from "../components/CustomModal";
 
 const columns = [
   {
@@ -32,8 +37,18 @@ const columns = [
 ];
 
 const CouponList = () => {
+  const [open, setOpen] = useState(false);
+  const [couponId, setCouponId] = useState("");
+  const showModal = (e) => {
+    setOpen(true);
+    setCouponId(e);
+  };
+  const hideModal = () => {
+    setOpen(false);
+  };
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(resetState());
     dispatch(getCoupons());
   }, []);
   const couponState = useSelector((state) => state.coupon.coupons);
@@ -46,22 +61,42 @@ const CouponList = () => {
       expiry: new Date(couponState[i].expiry).toLocaleDateString(),
       action: (
         <>
-          <Link className=" fs-5 text-warning" to="">
+          <Link
+            className=" fs-5 text-warning"
+            to={`/admin/coupon/${couponState[i]._id}`}
+          >
             <TbEdit />
           </Link>
-          <Link className="ms-2 fs-5 text-danger" to="">
+          <button
+            className="ms-2 fs-5 text-danger bg-transparent border-0"
+            onClick={() => showModal(couponState[i]._id)}
+          >
             <RiDeleteBin5Line />
-          </Link>
+          </button>
         </>
       ),
     });
   }
+  const deleteCoupon = (e) => {
+    dispatch(deleteACoupon(e)).then(() => {
+      setOpen(false);
+      dispatch(getCoupons());
+    });
+  };
   return (
     <div>
       <h3 className="mb-4 title">Coupons</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
+      <CustomModal
+        hideModal={hideModal}
+        open={open}
+        performAction={() => {
+          deleteCoupon(couponId);
+        }}
+        title="Are you sure you want to delete this brand?"
+      />
     </div>
   );
 };

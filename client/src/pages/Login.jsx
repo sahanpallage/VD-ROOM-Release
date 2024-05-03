@@ -24,22 +24,23 @@ const Login = () => {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      dispatch(login(values));
+      if (Object.keys(formik.errors).length === 0) {
+        customerToast("User Successfully logged in!", "success");
+        dispatch(login(values));
+        setTimeout(() => {
+          navigateTo("/admin");
+        }, 1000);
+      } else {
+        customerToast("Invalid credentials", "error");
+        navigateTo("");
+      }
     },
   });
 
   const authState = useSelector((state) => state);
-  const { user, isLoading, isError, isSuccess, message } = authState.auth;
+  const { message } = authState.auth;
 
-  useEffect(() => {
-    if (isSuccess) {
-      customerToast("User Successfully logged in !", "success");
-      navigateTo("/admin");
-    } else {
-      customerToast("Invalid credentials", "error");
-      navigateTo("");
-    }
-  }, [user, isLoading, isError, isSuccess]);
+  useEffect(() => {}, []);
 
   return (
     <div className="py-5" style={{ background: "#ffd333", minHeight: "100vh" }}>

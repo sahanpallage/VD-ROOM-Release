@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CustomInput from "../components/CustomInput";
 import customerToast from "../components/common/CustomToast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { createBlogCategory } from "../features/blogCategory/blogCategorySlice";
+import {
+  createBlogCategory,
+  getABlogCategory,
+  resetState,
+  updateBlogCategory,
+} from "../features/blogCategory/blogCategorySlice";
 
 let Schema = Yup.object({
   title: Yup.string().required("Blog Category Name is required"),
@@ -13,20 +18,42 @@ let Schema = Yup.object({
 
 const AddBlogCat = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const navigate = useNavigate();
+  const getBlogCatId = location.pathname.split("/")[3];
+  const newBlogCat = useSelector((state) => state.blogCategory);
+  const { blogCatName } = newBlogCat;
+  useEffect(() => {
+    if (getBlogCatId !== undefined) {
+      dispatch(getABlogCategory(getBlogCatId));
+    } else {
+      dispatch(resetState());
+    }
+  }, [getBlogCatId]);
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      title: "",
+      title: blogCatName || "",
     },
     validationSchema: Schema,
     onSubmit: (values) => {
-      if (Object.keys(formik.errors).length === 0) {
+      if (
+        getBlogCatId !== undefined &&
+        Object.keys(formik.errors).length === 0
+      ) {
+        const data = { id: getBlogCatId, blogCatData: values };
+        dispatch(updateBlogCategory(data));
+        customerToast("Blog Category Updated Successfully", "success", true);
+        setTimeout(() => {
+          navigate("/admin/blog-category-list");
+        }, 1000);
+      } else if (Object.keys(formik.errors).length === 0) {
         dispatch(createBlogCategory(values));
         customerToast("Blog Category Added Successfully", "success");
         formik.resetForm();
         setTimeout(() => {
           navigate("/admin/blog-category-list");
-        }, 3000);
+        }, 1000);
       } else {
         customerToast("Blog Category Not Added", "error");
       }
