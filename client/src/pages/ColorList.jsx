@@ -87,7 +87,7 @@ const ColorList = () => {
         performAction={() => {
           deleteColor(colorId);
         }}
-        title="Are you sure you want to delete this brand?"
+        title="Are you sure you want to delete this color?"
       />
     </div>
   );

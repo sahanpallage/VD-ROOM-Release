@@ -95,7 +95,7 @@ const CouponList = () => {
         performAction={() => {
           deleteCoupon(couponId);
         }}
-        title="Are you sure you want to delete this brand?"
+        title="Are you sure you want to delete this coupon?"
       />
     </div>
   );

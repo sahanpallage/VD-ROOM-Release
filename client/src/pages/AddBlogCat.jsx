@@ -41,7 +41,7 @@ const AddBlogCat = () => {
         getBlogCatId !== undefined &&
         Object.keys(formik.errors).length === 0
       ) {
-        const data = { id: getBlogCatId, blogCatData: values };
+        const data = { id: getBlogCatId, blogCategoryData: values };
         dispatch(updateBlogCategory(data));
         customerToast("Blog Category Updated Successfully", "success", true);
         setTimeout(() => {
@@ -61,7 +61,9 @@ const AddBlogCat = () => {
   });
   return (
     <div>
-      <h3 className="mb-4 title">Add Blog Category</h3>
+      <h3 className="mb-4 title">
+        {getBlogCatId !== undefined ? "Edit" : "Add"} Blog Category
+      </h3>
       <div>
         <form action="" onSubmit={formik.handleSubmit}>
           <CustomInput
@@ -77,10 +79,10 @@ const AddBlogCat = () => {
             {formik.touched.title && formik.errors.title}
           </div>
           <button
-            className="btn btn-success border-0 rounded-3 my-5"
+            className="btn btn-success border-0 rounded-3 my-5 px-4 fw-bold"
             type="submit"
           >
-            Add Blog Category
+            {getBlogCatId !== undefined ? "Update" : "Add"} Blog Category
           </button>
         </form>
       </div>
