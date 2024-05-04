@@ -26,7 +26,7 @@
 
 // PostCard.jsx
 
-//socail feed show all posts
+//socail feed show all posts main page
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -37,7 +37,7 @@ import Card from "react-bootstrap/Card";
 import UserPost from "../../pages/UserPost";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/Navbar";
-import img from "../SocialFeed/like.svg"
+import img from "../SocialFeed/like.svg";
 
 const PostCard = () => {
   const [posts, setPosts] = useState([]);

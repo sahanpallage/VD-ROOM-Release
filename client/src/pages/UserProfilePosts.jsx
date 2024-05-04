@@ -71,6 +71,7 @@
 
 // export default UserProfilePosts;
 
+// user profile posts
 import React, { useEffect, useState } from "react";
 import PostCard from "../components/SocialFeed/PostCard";
 import UserPost from "./UserPost";
@@ -85,6 +86,9 @@ import NavBar from "../components/NavBar/Navbar";
 const UserProfilePosts = () => {
   const [posts, setPosts] = useState([]);
   const [showUserPostModal, setShowUserPostModal] = useState(false); //new
+
+  // Calculate total likes
+  const totalLikes = posts.reduce((sum, post) => sum + post.likes, 0);
 
   const navigate = useNavigate();
   //new
@@ -167,7 +171,21 @@ const UserProfilePosts = () => {
 
     <div>
       <NavBar />
-
+      <div
+        style={{
+          position: "absolute",
+          bottom: "50px",
+          left: "50%",
+          transform: "translate(-50%, 0)",
+          backgroundColor: "#eeeeee",
+          padding: "10px",
+          borderRadius: "5px",
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+      >
+        Total Likes: {totalLikes}
+      </div>
       {/* Add New Photo Button */}
       <div style={{ marginBottom: "20px" }}>
         {/* <Button
@@ -177,7 +195,6 @@ const UserProfilePosts = () => {
           Add New Photo
         </Button> */}
       </div>
-
       {/* Display Posts */}
       <div className="grid-container">
         {/* UserPost Modal */}
