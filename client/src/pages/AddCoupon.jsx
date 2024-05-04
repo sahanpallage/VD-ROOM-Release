@@ -25,6 +25,13 @@ const AddCoupon = () => {
   const getCouponId = location.pathname.split("/")[3];
   const newCoupon = useSelector((state) => state.coupon);
   const { couponName, couponExpiry, couponDiscount } = newCoupon;
+  const changeDateFormat = (date) => {
+    const newDate = new Date(date);
+    const year = newDate.getFullYear();
+    const month = String(newDate.getMonth() + 1).padStart(2, "0"); // Months are 0-based in JavaScript
+    const day = String(newDate.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
   useEffect(() => {
     if (getCouponId !== undefined) {
       dispatch(getACoupon(getCouponId));
@@ -36,7 +43,7 @@ const AddCoupon = () => {
     enableReinitialize: true,
     initialValues: {
       name: couponName || "",
-      expiry: couponExpiry || "",
+      expiry: changeDateFormat(couponExpiry) || "",
       discount: couponDiscount || 0,
     },
     validationSchema: Schema,

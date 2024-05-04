@@ -19,10 +19,10 @@ blogRouter.get("/", getAllBlogs);
 blogRouter.put("/likes", jwtValidation, likeBlog);
 blogRouter.put("/dislikes", jwtValidation, disLikeBlog);
 blogRouter.post("/create", jwtValidation, isAdmin, createBlog);
-blogRouter.put("/update/:id", jwtValidation, isAdmin, updateBlog);
-blogRouter.delete("/delete/:id", jwtValidation, isAdmin, deleteBlog);
+blogRouter.put("/:id", jwtValidation, isAdmin, updateBlog);
+blogRouter.delete("/:id", jwtValidation, isAdmin, deleteBlog);
 blogRouter.put(
-  "/upload/:id",
+  "/:id",
   jwtValidation,
   isAdmin,
   uploadPhoto.array("images", 2),
