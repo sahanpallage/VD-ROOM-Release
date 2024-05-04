@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../index.css";
 import { Column } from "@ant-design/plots";
 import { BsArrowDownRight, BsArrowUpRight } from "react-icons/bs";
 import { Table } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getOrders } from "../features/order/orderSlice";
 
 const columns = [
   {
@@ -18,21 +20,35 @@ const columns = [
     dataIndex: "product",
   },
   {
-    title: "Status",
-    dataIndex: "status",
+    title: "Address",
+    dataIndex: "address",
   },
 ];
-const data1 = [];
-for (let i = 0; i < 46; i++) {
-  data1.push({
-    key: i,
-    name: `Edward King ${i}`,
-    product: 32,
-    status: `London, Park Lane no. ${i}`,
-  });
-}
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getOrders());
+  }, []);
+  const getOrdersState = useSelector((state) => state.order.orders);
+  const data1 = [];
+  for (let i = 0; i < getOrdersState.length; i++) {
+    data1.push({
+      key: i + 1,
+      name:
+        getOrdersState[i].orderBy.firstname +
+        " " +
+        getOrdersState[i].orderBy.lastname,
+      product: [
+        ...new Set(
+          getOrdersState[i].products.map((i) => {
+            return i.product.title;
+          })
+        ),
+      ].join(", "),
+      address: getOrdersState[i].orderBy.address,
+    });
+  }
   const config = {
     data: [
       {

@@ -84,10 +84,10 @@ const Enquiries = () => {
               setEnquiryStatus(e.target.value, getEnquiryState[i]._id)
             }
           >
-            <option value="setStatus">Select Status</option>
+            <option value="Set Status">Select Status</option>
             <option value="Pending">Pending</option>
             <option value="Resolved">Resolved</option>
-            <option value="inProgress">In Progress</option>
+            <option value="In Progress">In Progress</option>
           </select>
         </>
       ),

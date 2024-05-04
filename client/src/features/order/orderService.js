@@ -7,8 +7,18 @@ const getOrders = async () => {
   return response.data;
 };
 
+const getOrder = async (id) => {
+  const response = await axios.post(
+    `${base_url}auth/get-orderbyuser/${id}`,
+    "",
+    config
+  );
+  return response.data;
+};
+
 const orderService = {
   getOrders,
+  getOrder,
 };
 
 export default orderService;

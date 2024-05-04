@@ -24,6 +24,7 @@ import {
   getOrders,
   updateOrderStatus,
   getAllOrders,
+  getUserById,
 } from "../controllers/authController.js";
 import { isAdmin, jwtValidation } from "../middlewares/jwtValidation.js";
 
@@ -37,6 +38,7 @@ authRouter.post("/admin-login", adminLoginController);
 authRouter.post("/cart", jwtValidation, userCart);
 authRouter.post("/cart/apply-coupon", jwtValidation, applyCoupon);
 authRouter.post("/cart/cash-order", jwtValidation, createOrder);
+authRouter.post("/get-orderbyuser/:id", jwtValidation, isAdmin, getUserById);
 
 // GET routes
 authRouter.get("/all-users", getAllUser);

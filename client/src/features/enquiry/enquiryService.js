@@ -20,7 +20,7 @@ const getEnquiry = async (id) => {
 const updateEnquiry = async (enquiry) => {
   const response = await axios.put(
     `${base_url}enquiry/${enquiry.id}`,
-    { status: enquiry.status },
+    { status: enquiry.enqData },
     config
   );
   return response.data;

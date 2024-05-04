@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { getAEnquiry } from "../features/enquiry/enquirySlice";
+import {
+  getAEnquiry,
+  getEnquiries,
+  resetState,
+  updateAEnquiry,
+} from "../features/enquiry/enquirySlice";
 import { BiArrowBack } from "react-icons/bi";
 
 const ViewEnq = () => {
@@ -15,6 +20,13 @@ const ViewEnq = () => {
   }, [getEnqId]);
   const goBack = () => {
     window.history.back();
+  };
+  const setEnquiryStatus = (e, i) => {
+    const data = { id: i, enqData: e };
+    dispatch(updateAEnquiry(data)).then(() => {
+      dispatch(resetState());
+      dispatch(getAEnquiry(getEnqId));
+    });
   };
 
   return (
@@ -62,11 +74,12 @@ const ViewEnq = () => {
               defaultValue={enqStatus ? enqStatus : "Pending"}
               name=""
               id=""
+              onChange={(e) => setEnquiryStatus(e.target.value, getEnqId)}
             >
-              <option value="setStatus">Select Status</option>
+              <option value="Set Status">Select Status</option>
               <option value="Pending">Pending</option>
               <option value="Resolved">Resolved</option>
-              <option value="inProgress">In Progress</option>
+              <option value="In Progress">In Progress</option>
             </select>
           </div>
         </div>

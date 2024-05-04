@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrders } from "../features/order/orderSlice";
-import { Link } from "react-router-dom";
+import { getOrderByUser, getOrders } from "../features/order/orderSlice";
+import { Link, useLocation } from "react-router-dom";
 import { TbEdit } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { generatePDFReport } from "../utils/ordersReport/reportGenerator";
+import { generatePDFReport } from "../utils/ordersReport/viewOrderReport";
 
 const columns = [
   {
@@ -13,12 +13,20 @@ const columns = [
     dataIndex: "key",
   },
   {
-    title: "Name",
+    title: "Product Name",
     dataIndex: "name",
   },
   {
-    title: "Product",
-    dataIndex: "product",
+    title: "Brand Name",
+    dataIndex: "brand",
+  },
+  {
+    title: "Count",
+    dataIndex: "count",
+  },
+  {
+    title: "Color",
+    dataIndex: "color",
   },
   {
     title: "Amount",
@@ -34,31 +42,36 @@ const columns = [
   },
 ];
 
-const Orders = () => {
+const ViewOrder = () => {
+  const location = useLocation();
+  const userId = location.pathname.split("/")[3];
   const [orders, setOrders] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getOrders());
+    dispatch(getOrderByUser(userId));
   }, []);
-  const getOrdersState = useSelector((state) => state.order.orders);
+  const getOrdersState = useSelector(
+    (state) => state.order.orderByUser?.products
+  );
   useEffect(() => {
+    if (!getOrdersState) return;
     const data1 = [];
     for (let i = 0; i < getOrdersState.length; i++) {
       data1.push({
         key: i + 1,
-        name:
-          getOrdersState[i].orderBy.firstname +
-          " " +
-          getOrdersState[i].orderBy.lastname,
-        product: (
-          <Link to={`/admin/orders/${getOrdersState[i].orderBy._id}`}>
-            View Orders
-          </Link>
-        ),
-        amount: getOrdersState[i].paymentIntent.amount,
-        date: new Date(getOrdersState[i].createdAt).toLocaleDateString(),
+        name: getOrdersState[i].product.title,
+        brand: getOrdersState[i].product.brand,
+        count: getOrdersState[i].count,
+        color: getOrdersState[i].color,
+        amount: getOrdersState[i].product.price,
+        date: new Date(
+          getOrdersState[i].product.createdAt
+        ).toLocaleDateString(),
         action: (
           <>
+            <Link className=" fs-5 text-warning" to="">
+              <TbEdit />
+            </Link>
             <Link className="ms-2 fs-5 text-danger" to="">
               <RiDeleteBin5Line />
             </Link>
@@ -70,7 +83,7 @@ const Orders = () => {
   }, [getOrdersState]);
   return (
     <div>
-      <h3 className="mb-4 title">Orders</h3>
+      <h3 className="mb-4 title">View Order</h3>
       <div>
         <Table columns={columns} dataSource={orders} />
       </div>
@@ -112,4 +125,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default ViewOrder;
