@@ -90,7 +90,7 @@ const UserProfile = () => {
   const initialValues = {
     name: "John ",
     lname: "Doe",
-    email: "johndoe@example.com",
+    email: "johndoe@gmail.com",
     avatar: "https://via.placeholder.com/200",
     phoneNumber: "07012345678",
     birthdate: "1990-01-01",
@@ -113,7 +113,7 @@ const UserProfile = () => {
       className="d-flex justify-content-center align-items-center"
       style={{ height: "100vh" }}
     >
-      <Card style={{ width: "400px" }}>
+      <Card style={{ width: "300px" }} >
         <Card.Body>
           <Formik
             initialValues={initialValues}
