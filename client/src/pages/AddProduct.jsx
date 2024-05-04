@@ -15,6 +15,7 @@ import {
   createProducts,
   getAProduct,
   resetState,
+  updateProduct,
 } from "../features/product/productSlice";
 import { useEffect, useState } from "react";
 import CustomInput from "../components/CustomInput";
@@ -124,21 +125,22 @@ const AddProduct = () => {
       brand: productBrand || "",
       category: productCategory || "",
       tags: prodTags || "",
-      color: "",
+      color: [],
       quantity: productQuantity || "",
-      images: "",
+      images: [],
     },
     validationSchema: Schema,
     onSubmit: (values) => {
-      if (Object.keys(formik.errors).length === 0) {
+      if (getProductId !== undefined) {
+        const data = { id: getProductId, productData: values };
+        dispatch(updateProduct(data));
+        dispatch(resetState());
+      } else {
         dispatch(createProducts(values));
-        customerToast("Product Added Successfully", "success");
         formik.resetForm();
         setTimeout(() => {
           navigate("/admin/product-list");
-        }, 3000);
-      } else {
-        customerToast("Product Not Added", "error");
+        }, 1000);
       }
     },
   });
@@ -150,6 +152,7 @@ const AddProduct = () => {
 
   const handleColors = (i) => {
     setColor(i);
+    formik.setFieldValue("color", i);
   };
 
   return (
