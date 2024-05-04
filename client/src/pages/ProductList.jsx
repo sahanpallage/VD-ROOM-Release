@@ -3,10 +3,15 @@ import { Table } from "antd";
 import { TbEdit } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../features/product/productSlice";
+import {
+  deleteAProduct,
+  getProducts,
+  resetState,
+} from "../features/product/productSlice";
 import { Link } from "react-router-dom";
 import "../index.css";
 import { generatePDFReport } from "../utils/productsReport/reportGenerator";
+import CustomModal from "../components/CustomModal";
 
 const columns = [
   {
@@ -54,10 +59,21 @@ const columns = [
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [productId, setProductId] = useState("");
+  const showModal = (e) => {
+    setOpen(true);
+    setProductId(e);
+  };
+  const hideModal = () => {
+    setOpen(false);
+  };
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(resetState());
     dispatch(getProducts());
   }, []);
+
   const productState = useSelector((state) => state.product.products);
   useEffect(() => {
     const data1 = [];
@@ -74,24 +90,44 @@ const ProductList = () => {
         sold: productState[i].sold,
         action: (
           <>
-            <Link className=" fs-5 text-warning" to="">
+            <Link
+              className=" fs-5 text-warning"
+              to={`/admin/product/${productState[i]._id}`}
+            >
               <TbEdit />
             </Link>
-            <Link className="ms-2 fs-5 text-danger" to="">
+            <button
+              className="ms-2 fs-5 text-danger bg-transparent border-0"
+              onClick={() => showModal(productState[i]._id)}
+            >
               <RiDeleteBin5Line />
-            </Link>
+            </button>
           </>
         ),
       });
     }
     setProducts(data1);
   }, [productState]);
+  const deleteProduct = (e) => {
+    dispatch(deleteAProduct(e)).then(() => {
+      setOpen(false);
+      dispatch(getProducts());
+    });
+  };
   return (
     <div>
       <h3 className="mb-4 title">Products</h3>
       <div>
         <Table columns={columns} dataSource={products} />
       </div>
+      <CustomModal
+        hideModal={hideModal}
+        open={open}
+        performAction={() => {
+          deleteProduct(productId);
+        }}
+        title="Are you sure you want to delete this blog?"
+      />
       <div
         style={{
           display: "flex",

@@ -102,6 +102,7 @@ function App() {
             <Route path="brand/:id" element={<AddBrand />} />
             <Route path="product-list" element={<ProductList />} />
             <Route path="product" element={<AddProduct />} />
+            <Route path="product/:id" element={<AddProduct />} />
           </Route>
         </Routes>
         <ToastContainer position="top-center" autoClose={1000} />
