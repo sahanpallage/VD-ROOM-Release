@@ -2,7 +2,6 @@ import React from "react";
 import Data from "./data";
 import "./card.css";
 
-
 const Card = () => {
   return (
     <div className="mainContainer">
@@ -18,8 +17,7 @@ const Card = () => {
         </div>
       ))}
     </div>
-
-  )
-}
+  );
+};
 
 export default Card;
