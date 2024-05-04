@@ -43,6 +43,7 @@ import ShippingPolicy from "./pages/customer/ShippingPolicy";
 import { ToastContainer } from "react-toastify";
 import CouponList from "./pages/CouponList";
 import AddCoupon from "./pages/AddCoupon";
+import ViewEnq from "./pages/ViewEnq";
 
 function App() {
   return (
@@ -76,6 +77,7 @@ function App() {
           <Route path="/admin" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="enquiries" element={<Enquiries />} />
+            <Route path="enquiries/:id" element={<ViewEnq />} />
             <Route path="blog-list" element={<Bloglist />} />
             <Route path="blog" element={<AddBlog />} />
             <Route path="blog/:id" element={<AddBlog />} />

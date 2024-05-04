@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { getEnquiries } from "../features/enquiry/enquirySlice";
+import {
+  deleteAEnquiry,
+  getEnquiries,
+  updateAEnquiry,
+} from "../features/enquiry/enquirySlice";
 import { Link } from "react-router-dom";
-import { TbEdit } from "react-icons/tb";
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { IoEyeSharp } from "react-icons/io5";
+import CustomModal from "../components/CustomModal";
 import "../index.css";
 
 const columns = [
@@ -43,6 +48,15 @@ const columns = [
 ];
 
 const Enquiries = () => {
+  const [open, setOpen] = useState(false);
+  const [enqId, setEnqId] = useState("");
+  const showModal = (e) => {
+    setOpen(true);
+    setEnqId(e);
+  };
+  const hideModal = () => {
+    setOpen(false);
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getEnquiries());
@@ -59,23 +73,57 @@ const Enquiries = () => {
       date: new Date(getEnquiryState[i].createdAt).toLocaleDateString(),
       status: (
         <>
-          <select name="" className="form-control form-select" id="">
-            <option value="setStatus">Set Status</option>
+          <select
+            className="form-control form-select"
+            defaultValue={
+              getEnquiryState[i].status ? getEnquiryState[i].status : "Pending"
+            }
+            name=""
+            id=""
+            onChange={(e) =>
+              setEnquiryStatus(e.target.value, getEnquiryState[i]._id)
+            }
+          >
+            <option value="setStatus">Select Status</option>
             <option value="Pending">Pending</option>
             <option value="Resolved">Resolved</option>
             <option value="inProgress">In Progress</option>
           </select>
         </>
       ),
+
       action: (
         <>
-          <Link className="ms-2 fs-5 text-danger" to="">
-            <RiDeleteBin5Line />
+          <Link
+            className="ms-2 fs-5 text-danger"
+            to={`/admin/enquiries/${getEnquiryState[i]._id}`}
+          >
+            <IoEyeSharp />
           </Link>
+          <button
+            className="ms-2 fs-5 text-danger bg-transparent border-0"
+            onClick={() => showModal(getEnquiryState[i]._id)}
+          >
+            <RiDeleteBin5Line />
+          </button>
         </>
       ),
     });
   }
+
+  const setEnquiryStatus = (e, i) => {
+    const data = { id: i, enqData: e };
+    dispatch(updateAEnquiry(data)).then(() => {
+      dispatch(getEnquiries());
+    });
+  };
+
+  const deleteEnquiry = (e) => {
+    dispatch(deleteAEnquiry(e)).then(() => {
+      setOpen(false);
+      dispatch(getEnquiries());
+    });
+  };
 
   return (
     <div>
@@ -83,6 +131,14 @@ const Enquiries = () => {
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>
+      <CustomModal
+        hideModal={hideModal}
+        open={open}
+        performAction={() => {
+          deleteEnquiry(enqId);
+        }}
+        title="Are you sure you want to delete this enquiry?"
+      />
     </div>
   );
 };

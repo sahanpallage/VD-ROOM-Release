@@ -3,7 +3,11 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../index.css";
 import { Stepper } from "react-form-stepper";
-import { deleteImg, uploadImg } from "../features/upload/uploadSlice";
+import {
+  deleteImg,
+  resetImage,
+  uploadImg,
+} from "../features/upload/uploadSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -30,18 +34,6 @@ const AddBlog = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const getBlogId = location.pathname.split("/")[3];
-  useEffect(() => {
-    if (getBlogId !== undefined) {
-      dispatch(getABlog(getBlogId));
-    } else {
-      dispatch(resetState());
-    }
-  }, [getBlogId]);
-
-  useEffect(() => {
-    dispatch(resetState());
-    dispatch(getBlogCategories());
-  }, []);
 
   const imgState = useSelector((state) => state.upload.images);
   const blogCatState = useSelector(
@@ -59,13 +51,26 @@ const AddBlog = () => {
     blogCategory,
     blogImage,
   } = newBlog;
+
+  useEffect(() => {
+    if (getBlogId !== undefined) {
+      dispatch(getABlog(getBlogId));
+      img.push(blogImage);
+    } else {
+      dispatch(resetState());
+    }
+  }, [getBlogId]);
+
+  useEffect(() => {
+    dispatch(resetState());
+    dispatch(getBlogCategories());
+  }, []);
+
   useEffect(() => {
     if (isSuccess && createdBlog) {
-      dispatch(resetState());
       customerToast("Blog created successfully", "success");
     }
     if (isSuccess && updatedBlog) {
-      dispatch(resetState());
       customerToast("Blog updated successfully", "success", true);
       navigate("/admin/blog-list");
     }
@@ -82,13 +87,17 @@ const AddBlog = () => {
     });
   });
 
+  useEffect(() => {
+    formik.values.images = img;
+  }, [blogImage]);
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
       title: blogName || "",
       description: blogDescription || "",
       category: blogCategory || "",
-      images: blogImage || [],
+      images: "",
     },
     validationSchema: Schema,
     onSubmit: (values) => {
@@ -105,12 +114,6 @@ const AddBlog = () => {
       }
     },
   });
-
-  useEffect(() => {
-    if (JSON.stringify(formik.values.images) !== JSON.stringify(img)) {
-      formik.setFieldValue("images", img);
-    }
-  }, [img, formik]);
 
   const errorStyle = {
     marginTop: "5px",
@@ -197,18 +200,12 @@ const AddBlog = () => {
             </Dropzone>
           </div>
           <div className="showImages d-flex mt-3 flex-wrap mt-3 gap-3">
-            {formik.values.images?.map((i, j) => {
+            {imgState?.map((i, j) => {
               return (
                 <div className="position-relative" key={j}>
                   <button
                     type="button"
-                    onClick={() => {
-                      const newImages = formik.values.images.filter(
-                        (image) => image.public_id !== i.public_id
-                      );
-                      formik.setFieldValue("images", newImages);
-                      dispatch(deleteImg(i.public_id));
-                    }}
+                    onClick={() => dispatch(deleteImg(i.public_id))}
                     className="btn-close position-absolute"
                     style={{ top: "10px", right: "10px" }}
                   ></button>
