@@ -69,6 +69,7 @@ const AddProduct = () => {
     (state) => state.prodCategory.prodCategories
   );
   const colorState = useSelector((state) => state.color.colors);
+
   const coloropt = [];
   colorState.forEach((i) => {
     coloropt.push({
@@ -115,6 +116,7 @@ const AddProduct = () => {
   }, [productImages, productColor]);
 
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
       title: productName || "",
       description: productDescription || "",
@@ -122,7 +124,7 @@ const AddProduct = () => {
       brand: productBrand || "",
       category: productCategory || "",
       tags: prodTags || "",
-      color: productColor || "",
+      color: "",
       quantity: productQuantity || "",
       images: "",
     },
@@ -258,7 +260,7 @@ const AddProduct = () => {
             allowClear
             className="w-100"
             placeholder="Select Color"
-            defaultValue={color}
+            value={color}
             onChange={(i) => handleColors(i)}
             options={coloropt}
           />
