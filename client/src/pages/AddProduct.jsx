@@ -1,15 +1,3 @@
-import React from "react";
-import CustomInput from "../components/CustomInput";
-<<<<<<< Updated upstream
-
-const AddProduct = () => {
-  return (
-    <div>
-      <h3 className="mb-4">Add Product</h3>
-      <div>
-        <form action="">
-          <CustomInput type="text" label="Enter A Product" />
-=======
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useFormik } from "formik";
@@ -24,18 +12,27 @@ import "react-widgets/styles.css";
 import Dropzone from "react-dropzone";
 import { deleteImg, uploadImg } from "../features/upload/uploadSlice";
 import { createProducts } from "../features/product/productSlice";
+import { useEffect, useState } from "react";
+import CustomInput from "../components/CustomInput";
 
 let Schema = Yup.object({
   title: Yup.string().required("Title is required"),
-  description: Yup.string().required("Description is required"),
-  price: Yup.number().required("Price is required"),
+  description: Yup.string()
+    .required("Description is required")
+    .min(20, "Description must be at least 20 characters")
+    .max(150, "Description must be at most 150 characters"),
+  price: Yup.number()
+    .min(1, "Price cannot be negative")
+    .required("Price is required"),
   brand: Yup.string().required("Brand is required"),
   category: Yup.string().required("Category is required"),
   tags: Yup.string().required("Tag is required"),
   color: Yup.array()
     .min(1, "Pick at least one color")
     .required("Color is required"),
-  quantity: Yup.number().required("Quantity is required"),
+    quantity: Yup.number()
+    .min(0, "Quantity cannot be negative")
+    .required("Quantity is required"),
 });
 
 const AddProduct = () => {
@@ -258,7 +255,6 @@ const AddProduct = () => {
               );
             })}
           </div>
->>>>>>> Stashed changes
           <button
             className="btn btn-success border-0 rounded-3 my-5"
             type="submit"
